@@ -1,8 +1,8 @@
 /**
  * Title of Project
  * Author Name
- * 
- * This is a template. You must fill in the title, author, 
+ *
+ * This is a template. You must fill in the title, author,
  * and this description to match your project!
  */
 
@@ -13,6 +13,8 @@
 */
 function preload() {
 
+background(200, 200, 200);
+
 }
 
 
@@ -20,8 +22,13 @@ function preload() {
  * Description of setup
 */
 function setup() {
-createCanvas(480, 480);
-background(255, 140, 55);
+    createCanvas(250,500);
+
+    background(150,50,250);
+
+    rect(25,25,200,5);
+
+    line(125,50,125,200)
 }
 
 
