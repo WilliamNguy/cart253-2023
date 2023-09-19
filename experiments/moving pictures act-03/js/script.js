@@ -35,6 +35,7 @@ let square = {
     y: 500,
     size: 300,
     fill: 255,
+    
     alpha: 200
 };
 
