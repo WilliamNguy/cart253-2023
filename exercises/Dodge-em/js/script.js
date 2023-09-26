@@ -19,7 +19,7 @@ let lebron = {
 }
 
 
-let shark = {
+let ball = {
     x: 0,
     y: 250,
     size: 100,
@@ -60,8 +60,8 @@ function setup() {
     createCanvas(windowWidth,windowHeight)
 
     
-    shark.y = random(0,height);
-    shark.vx = shark.speed;
+    ball.y = random(0,height);
+    ball.vx = ball.speed;
 
 }
 
@@ -75,24 +75,24 @@ function draw() {
     image(lebron.image,lebron.x, lebron.y);
 
     //COVID19 mouvement
-    shark.x = shark.x + shark.vx;
-    shark.y = shark.y + shark.vy;
+    ball.x = ball.x + ball.vx;
+    ball.y = ball.y + ball.vy;
 
-    if (shark.x > width) {
-        shark.x = 0;
-        shark.y = random(0,height);
+    if (ball.x > width) {
+        ball.x = 0;
+        ball.y = random(0,height);
 
     }
 
-    if (shark.x > width/2) {
-        shark.y = random(0,height);
-        shark.vx = shark.speed;
+    if (ball.x > width/2) {
+        ball.y = random(0,height);
+        ball.vx = ball.speed;
     }
    
 
-    //CHECK FOR CATCHING COVID19
-    let d = dist(player.x, player.y, shark.x, shark.y);
-    if (d < shark.size/2 + player.size/2) {
+    //CHECK IF YOU GOT HIT BY LEBRON
+    let d = dist(player.x, player.y, ball.x, ball.y);
+    if (d < ball.size/2 + player.size/2) {
         noLoop();
     };
 
@@ -102,10 +102,10 @@ function draw() {
 
     
 
-    //DISPLAY COVID19
-    fill(shark.fill.r, shark.fill.g, shark.fill.b);
+    //DISPLAY BASKETBALL
+    fill(ball.fill.r, ball.fill.g, ball.fill.b);
     
-    ellipse(shark.x, shark.y, shark.size);
+    ellipse(ball.x, ball.y, ball.size);
 
     
    
