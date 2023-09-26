@@ -12,19 +12,17 @@
  * Description of preload
 */
 
-let = lebronImage;
-
 let covid19 = {
     x: 0,
     y: 250,
     size: 100,
     vx: 0,
     vy: 0,
-    speed: 5,
+    speed: 28,
     fill: {
-        r: 45,
-        g: 48,
-        b: 81
+        r: 255,
+        g: 0,
+        b: 0
     }
 };
 
@@ -32,19 +30,13 @@ let player = {
     x: 1200,
     y: 250,
     size: 100,
-    fill: {
-        a: 239,
-        d: 99,
-        c: 106
-    }
-
-    
+    fill: 250
 };
 
-
+let rectScale = 0; 
 
 function preload() {
-    lebronImage = loadImage("assets/images/clown.png");
+
 }
 
 
@@ -53,7 +45,6 @@ function preload() {
 */
 function setup() {
     createCanvas(windowWidth,windowHeight)
-
     
     covid19.y = random(0,height);
     covid19.vx = covid19.speed;
@@ -65,9 +56,7 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    background(49,199,199)
-
-    Image(lebronImage,0,0,100,100);
+    background(0,0,0)
 
     //COVID19 mouvement
     covid19.x = covid19.x + covid19.vx;
@@ -78,11 +67,6 @@ function draw() {
         covid19.y = random(0,height);
 
     }
-
-    if (covid19.x > width/2) {
-        covid19.y = random(0,height);
-        covid19.vx = covid19.speed;
-    }
    
 
     //CHECK FOR CATCHING COVID19
@@ -92,20 +76,16 @@ function draw() {
     };
 
     //DISPLAY PLAYER
-    fill(player.fill.a, player.fill.d, player.fill.c);
+    fill(player.fill);
     ellipse(player.x, player.y, player.size);
 
     
 
     //DISPLAY COVID19
     fill(covid19.fill.r, covid19.fill.g, covid19.fill.b);
-    
     ellipse(covid19.x, covid19.y, covid19.size);
 
-    
-   
-    
-    
+    rectScale = rectScale + 0.01;
 }
 
 //PLAYER MOUNVEMENT
