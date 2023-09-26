@@ -12,7 +12,7 @@
  * Description of preload
 */
 
-let = lebronImage;
+// let = lebronImage;
 
 let covid19 = {
     x: 0,
@@ -44,7 +44,7 @@ let player = {
 
 
 function preload() {
-    lebronImage = loadImage("assets/images/clown.png");
+    // lebronImage = loadImage("assets/images/clown.png");
 }
 
 
@@ -67,7 +67,7 @@ function setup() {
 function draw() {
     background(49,199,199)
 
-    Image(lebronImage,0,0,100,100);
+    // Image(lebronImage,0,0,100,100);
 
     //COVID19 mouvement
     covid19.x = covid19.x + covid19.vx;
