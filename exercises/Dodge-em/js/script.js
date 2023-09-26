@@ -11,20 +11,25 @@
 /**
  * Description of preload
 */
+let lebron = {
+    x: 100,
+    y: 100,
+    size: 100,
+    image: undefined
+}
 
-// let = lebronImage;
 
-let covid19 = {
+let shark = {
     x: 0,
     y: 250,
     size: 100,
     vx: 0,
     vy: 0,
-    speed: 5,
+    speed: 10,
     fill: {
-        r: 45,
-        g: 48,
-        b: 81
+        r: 238,
+        g: 103,
+        b: 48
     }
 };
 
@@ -33,9 +38,9 @@ let player = {
     y: 250,
     size: 100,
     fill: {
-        a: 239,
-        d: 99,
-        c: 106
+        a: 0,
+        d: 0,
+        c: 0
     }
 
     
@@ -44,7 +49,7 @@ let player = {
 
 
 function preload() {
-    // lebronImage = loadImage("assets/images/clown.png");
+    lebron.image = loadImage("assets/images/lebronjames.png");
 }
 
 
@@ -55,8 +60,8 @@ function setup() {
     createCanvas(windowWidth,windowHeight)
 
     
-    covid19.y = random(0,height);
-    covid19.vx = covid19.speed;
+    shark.y = random(0,height);
+    shark.vx = shark.speed;
 
 }
 
@@ -65,29 +70,29 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    background(49,199,199)
+    background(223,187,133)
 
-    // Image(lebronImage,0,0,100,100);
+    image(lebron.image,lebron.x, lebron.y);
 
     //COVID19 mouvement
-    covid19.x = covid19.x + covid19.vx;
-    covid19.y = covid19.y + covid19.vy;
+    shark.x = shark.x + shark.vx;
+    shark.y = shark.y + shark.vy;
 
-    if (covid19.x > width) {
-        covid19.x = 0;
-        covid19.y = random(0,height);
+    if (shark.x > width) {
+        shark.x = 0;
+        shark.y = random(0,height);
 
     }
 
-    if (covid19.x > width/2) {
-        covid19.y = random(0,height);
-        covid19.vx = covid19.speed;
+    if (shark.x > width/2) {
+        shark.y = random(0,height);
+        shark.vx = shark.speed;
     }
    
 
     //CHECK FOR CATCHING COVID19
-    let d = dist(player.x, player.y, covid19.x, covid19.y);
-    if (d < covid19.size/2 + player.size/2) {
+    let d = dist(player.x, player.y, shark.x, shark.y);
+    if (d < shark.size/2 + player.size/2) {
         noLoop();
     };
 
@@ -98,9 +103,9 @@ function draw() {
     
 
     //DISPLAY COVID19
-    fill(covid19.fill.r, covid19.fill.g, covid19.fill.b);
+    fill(shark.fill.r, shark.fill.g, shark.fill.b);
     
-    ellipse(covid19.x, covid19.y, covid19.size);
+    ellipse(shark.x, shark.y, shark.size);
 
     
    
