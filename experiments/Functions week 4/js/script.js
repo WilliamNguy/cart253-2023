@@ -8,14 +8,14 @@
 
 "use strict";
 
-let circle = {
-    x: 0,
-    y: 250,
-    size: 100,
-    vx: 1,
-    vy: 0
+// let circle = {
+//     x: 0,
+//     y: 250,
+//     size: 100,
+//     vx: 1,
+//     vy: 0
 
-};
+// };
 
 /**
  * Description of preload
@@ -41,38 +41,57 @@ function setup() {
 function draw() {
     background (0);
 
-    move();
-    wrap();
-    display();
+    parallels(100,100,10,1,200,1);
+    parallels(50,50,15,2,329,10);
+    parallels(200,200,25,5,109,20);
+    parallels(312,212,0.5,150,2);
+
+}
+
+function parallels(x,y, numLines, lineWidth, lineHeight, lineSpacing) {
+   
+for (let i = 0; i < numLines; i++) {
+    noStroke();
+    fill(255);
+    rectMode(CENTER);
+    rect(x,y, lineWidth,lineHeight);
+    x = x + lineSpacing;
+}
+
+
+
+    // move();
+    // wrap();
+    // display();
 
 
 
 }
 
-function move() {
-    circle.x = circle.x + circle.vx;
-    circle.y = circle.y + circle.vy;
-}
+// function move() {
+//     circle.x = circle.x + circle.vx;
+//     circle.y = circle.y + circle.vy;
+// }
 
-function wrap() {
-    if (circle.x > width) {
-        circle.x = 0;
+// function wrap() {
+//     if (circle.x > width) {
+//         circle.x = 0;
         
-    }
-}
+//     }
+// }
 
-function display() {
-    fill(255,0,0);
-    rectMode (CENTER);
-    rect(circle.x,circle.y,circle.size);
-} 
+// function display() {
+//     fill(255,0,0);
+//     rectMode (CENTER);
+//     rect(circle.x,circle.y,circle.size);
+// } 
 
-function reset() {
+//function reset() {
     circle.x = 0;
     circle.vx = circle.vx + 2;
     circle.size = circle.size + 5;
-}
+//}
 
-function mousePressed() {
-   reset();
-}
+// function mousePressed() {
+//    reset();
+// }
