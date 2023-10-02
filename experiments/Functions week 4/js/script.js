@@ -17,6 +17,8 @@
 
 // };
 
+
+
 /**
  * Description of preload
 */
@@ -31,7 +33,11 @@ function preload() {
 function setup() {
     createCanvas (500,500);
 
+    let hotCelsius = toCelsius(100);
+    console.log(`100 degrees Fahrenheit is ${hotCelsius} degrees Celsius.`);
 
+    let coldCelsius = toCelsius(10);
+    console.log(`10 degrees Fahrenheit is ${coldCelsius} degrees Celsius.`);
 }
 
 
@@ -40,22 +46,12 @@ function setup() {
 */
 function draw() {
     background (0);
-
-    parallels(100,100,10,1,200,1);
-    parallels(50,50,15,2,329,10);
-    parallels(200,200,25,5,109,20);
-    parallels(312,212,0.5,150,2);
-
 }
+function toCelsius(fahrenheit) {
 
-function parallels(x,y, numLines, lineWidth, lineHeight, lineSpacing) {
-   
-for (let i = 0; i < numLines; i++) {
-    noStroke();
-    fill(255);
-    rectMode(CENTER);
-    rect(x,y, lineWidth,lineHeight);
-    x = x + lineSpacing;
+    let celsius = (fahrenheit - 32) * 5/9;
+    return celsius; 
+
 }
 
 
@@ -66,7 +62,7 @@ for (let i = 0; i < numLines; i++) {
 
 
 
-}
+
 
 // function move() {
 //     circle.x = circle.x + circle.vx;
