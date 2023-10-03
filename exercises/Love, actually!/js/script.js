@@ -1,9 +1,11 @@
 /**
- * Title of Project
- * Author Name
+ * Getting LeBron's signature
+ * A
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ OBJECTIVE OF THIS MINIGAME: THE PLAYER IS ON A MISSION OF GETTING LEBRON JAMES' SIGNATURE. 
+ LEBRON WILL TRY TO ESCAPE THE PLAYER.
+ THE PLAYER CAN USE THE MOUSE TO DRAG LEBRON BACK MAKING IT EASIER.
+ THERE IS ALSO A SECRET ENDING!
  */
 
 "use strict";
@@ -11,35 +13,31 @@
 let circle1 = {
     x: undefined,
     y: 250,
-    size: 100,
+    size: 80,
     vx: 0,
     vy: 0,
-    speed: 3,
+    speed: 3.3,
 };
 
 let circle2 = {
     x: undefined,
     y: 250,
-    size: 100,
+    size: 80,
     vx: 0,
     vy: 0,
     speed: 3,
 };
 
-let state = `title`; // CAN BE: TITLE, SIMULATION, LOVE, SADNESS
+let state = `title`; // CAN BE: TITLE, SIMULATION, SUCCESS, SADNESS
 
 
-/**
- * Description of preload
-*/
+
 function preload() {
 
 }
 
 
-/**
- * Description of setup
-*/
+
 function setup() {
     createCanvas(500,500);
 
@@ -55,9 +53,7 @@ function setupCircles() {
     //circle2.vy = random(-circle2.speed,circle2.speed);
 }
 
-/**
- * Description of draw()
-*/
+
 function draw() {
 background(161,80,159);
 
@@ -70,8 +66,8 @@ if (state === `title`) {
 else if (state === `simulation`) {
     simulation();
 }
-else if (state === `love`) {
-    love();
+else if (state === `success`) {
+    success();
 }
 else if (state === `sadness`) {
     sadness();
@@ -127,7 +123,7 @@ checkOverlap();
 display();
 }
 
-function love() {
+function success() {
     push();
     textSize(40);
     fill(244,200,0);
@@ -182,7 +178,7 @@ function checkOverlap() {
     //CIRCLES OVERLAPPING
 let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
 if (d < circle1.size/2 + circle2.size/2) {
-    state = `love`;
+    state = `success`;
 }
 }
 
