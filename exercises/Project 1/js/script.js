@@ -62,6 +62,9 @@ function draw() {
     // }
 
 
+    move();
+
+
 //player
     player.x = mouseX;
     
@@ -71,10 +74,6 @@ function draw() {
 //player boundaries
    
 
-//creating ball motion
-    ball.x = ball.x + (ball.vx * ball.speed);
-    ball.y = ball.y + (ball.vy * ball.speed);
-    
 //ball
     fill(250);
     ellipse(ball.x, ball.y, ball.size);
@@ -117,6 +116,13 @@ if (ball.x + ball.size > player.x && ball.x - ball.size < player.x + player.w &&
     ball.vx = random(-0.5, 1);
 }
 
+}
+
+function move() {
+    //creating ball motion
+    ball.x = ball.x + (ball.vx * ball.speed);
+    ball.y = ball.y + (ball.vy * ball.speed);
+    
 }
 
 // function title() {
