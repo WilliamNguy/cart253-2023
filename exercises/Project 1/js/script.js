@@ -48,11 +48,11 @@ let showLifeText = false;
 let showFastText = false;
 let showPaceText = false;
 let showSchoolText = false;
-let showJobText = false;
-let showRentText = false;
-let showFamilyText = false;
-let showFriendsText = false;
-let showAttentionText = false;
+// let showJobText = false;
+// let showRentText = false;
+// let showFamilyText = false;
+// let showFriendsText = false;
+// let showAttentionText =false;
 
 function setup() {
     createCanvas (windowWidth, windowHeight);
@@ -104,37 +104,20 @@ function draw() {
     }
     if (collisionCount === 20){
         showFastText = false;
+        showPaceText = true;
+    }
+    if (collisionCount === 22){
+        showPaceText = false;
         showSchoolText = true;
     }
     if (collisionCount === 25){
-        showWorkText = true;
-    }
-    if (collisionCount === 25){
-        showRentText = true;
-        
-    }
-    if (collisionCount === 25){
-        showFamilyText = true;
-        
-    }
-    if (collisionCount === 25){
-        showFriendsText = true;
-        
-    }
-    if (collisionCount === 25){
         showSchoolText = false;
-        showWorkText = false;
-        showRentText = false;
-        showFamilyText = false;
-        showFriendsText = false;
-        showAttentionText = true;
- 
-
+    }
 
     if (showDistractingText) {
         textSize(20);
         fill(255, 255, 255);
-        textAlign(CENTER, CENTER);
+        textAlign(CENTER, LEFT);
         text("Hey there!", width / 2, height / 2);
     }
 
@@ -186,36 +169,36 @@ function draw() {
         textAlign(CENTER, CENTER);
         text("School assignments,", width/2, height / 2 + 50);
     }
-    if (showJobText) {
-        textSize(20);
-        fill(255, 255, 255);
-        textAlign(CENTER, CENTER);
-        text("part time job,", width/2, height / 2 + 50);
-    }
-    if (showRentText) {
-        textSize(20);
-        fill(255, 255, 255);
-        textAlign(CENTER, CENTER);
-        text("rent is due,", width/2, height / 2 + 50);
-    }
-    if (showFamilyText) {
-        textSize(20);
-        fill(255, 255, 255);
-        textAlign(CENTER, CENTER);
-        text("family time,", width/2, height / 2 + 50);
-    }
-    if (showFriendsText) {
-        textSize(20);
-        fill(255, 255, 255);
-        textAlign(CENTER, CENTER);
-        text("friends are waiting,", width/2, height / 2 + 50);
-    }
-    if (showAttentionText) {
-        textSize(20);
-        fill(255, 255, 255);
-        textAlign(CENTER, CENTER);
-        text("You good? You're not even paying attention to me.", width/2, height / 2 + 50);
-    }
+    // if (showJobText) {
+    //     textSize(20);
+    //     fill(255, 255, 255);
+    //     textAlign(CENTER, CENTER);
+    //     text("part time job,", width/2, height / 2 + 50);
+    // }
+    // if (showRentText) {
+    //     textSize(20);
+    //     fill(255, 255, 255);
+    //     textAlign(CENTER, CENTER);
+    //     text("rent is due,", width/2, height / 2 + 50);
+    // }
+    // if (showFamilyText) {
+    //     textSize(20);
+    //     fill(255, 255, 255);
+    //     textAlign(CENTER, CENTER);
+    //     text("family time,", width/2, height / 2 + 50);
+    // }
+    // if (showFriendsText) {
+    //     textSize(20);
+    //     fill(255, 255, 255);
+    //     textAlign(CENTER, CENTER);
+    //     text("friends are waiting,", width/2, height / 2 + 50);
+    // }
+    // if (showAttentionText) {
+    //     textSize(20);
+    //     fill(255, 255, 255);
+    //     textAlign(CENTER, CENTER);
+    //     text("You good? You're not even paying attention to me.", width/2, height / 2 + 50);
+    // }
 
 function title() {
     push();
