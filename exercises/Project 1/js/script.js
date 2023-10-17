@@ -23,25 +23,26 @@ let ball = {
     size: 40,
     vx: 1,
     vy: 1,
-    speed: 5
+    speed: 5,
+    speedHit: 0.08
 };
 
-// let state = `title`;
+let state = `title`;
 
 function preload() {
 
 }
 
 let collisionCount = 0; 
+let displayCollisionText = false;
 
 let square = null;
-
 let backgroundColor = 0;
 
+let showDistractingText = false;
+let showLifeText = false;
+let showFastText = false;
 
-/**
-Description of setup
-*/
 function setup() {
     createCanvas (windowWidth, windowHeight);
     noStroke();
@@ -50,43 +51,84 @@ function setup() {
 }
 
 
-/**
-Description of draw()
-*/
 function draw() {
     background(backgroundColor);
 
-    // if (state === `title`) {
-    //     title();
-    // }
-    // else if (state === `simulation`) {
-    //     simulation();
-    // }
-    // else if (state ===`win`) {
+    if (state === `title`) {
+        title();
+    }
+    else if (state === `simulation`) {
+        simulation();
+    }
+    else if (state === `death`) {
+        death();
+    }
 
-    // }
-    // else if (state === `lose`) {
+    if (collisionCount === 5) {
+        showDistractingText = true;
+    }
+    if (collisionCount === 10) {
+        showDistractingText = false;
+        showLifeText = true;
+    }
+    if (collisionCount === 15) {
+        showLifeText = false;
+        showFastText = true;
+    }
+    if (collisionCount === 20){
+        showFastText = false;
+    }
 
-    // }
+    if (showDistractingText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("Hey! Am I distracting you?", width / 2, height / 2);
+    }
 
+    if (showLifeText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("This ball is like life, bouncing all over the place. It is unpredictable.", width/2, height / 2 + 50);
+    }
 
+    if (showFastText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("Life often move faster as we journey through it.", width/2, height / 2 + 50);
+    }
+
+function title() {
+    push();
+    textSize(64);
+    fill(200,100,100);
+    textAlign(CENTER,CENTER);
+    text(`LIFE`,width/2,height/2);
+    textSize(24);
+    fill(255);
+    text(`Click Me`, width / 2, height / 2 + 50);
+    pop();
+}
+
+function simulation() { 
+    ball.speed += 0.002;
     move();
     checkOffscreen();
     playerCollision();
     playerControl();
     moveSquare(square);
-
-//ball
+    bottomScreen();
     fill(250);
     ellipse(ball.x, ball.y, ball.size);
-
-//collision text
     fill(255);
     textAlign(CENTER, TOP);
     text(`Collisions: ${collisionCount}`, width / 2, 10 );
+    
 }
 
-
+}
 
 //falling squares for power ups
 function yellowSquare() {
@@ -136,13 +178,19 @@ function checkOffscreen() {
         ball.vy = ball.vy * -1;
     }
 }
+
+function bottomScreen() {
+    if (ball.y > height) {
+        state = `death`;
+    }
+}
 //check for objects colliding
 function playerCollision() {
-    if (ball.x + ball.size > player.x && ball.x - ball.size < player.x + player.w && ball.y + ball.size > player.y && ball.y - ball.size < player.y + player.h) {
-        ball.vx = ball.vx * 1;
-        ball.vy += random(-0.5, 1);
+    if (state === 'simulation' && ball.x - ball.size < player.x + player.w / 2 && ball.x + ball.size > player.x - player.w / 2 && ball.y + ball.size > player.y - player.h / 2 && ball.y - ball.size < player.y + player.h / 2) {
+        ball.vx = ball.vx * 1; + ball.speedHit;
+        ball.vy += random(-0.5, 0.5);
         ball.vy = ball.vy * -1;
-        ball.vx = random(-2, 1);
+        ball.vx = random(-0.5, 0.5);
         collisionCount++;
     }    
 }
@@ -156,9 +204,17 @@ function playerControl() {
 }
 
 
-// function title() {
-//     textSize(64);
-//     fill(200,100,100);
-//     textAlign(CENTER,CENTER);
-//     text(`GAME`,width/2,height/2);
-// }
+function mousePressed() {
+    if (state === `title`) {
+        state = `simulation`;
+    }
+}
+
+function death() {
+    push();
+    textSize(64);
+    fill(150,150,255);
+    textAlign(CENTER,CENTER);
+    text(`RIP`,width/2,height/2);
+    pop();
+}
