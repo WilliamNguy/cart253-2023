@@ -24,7 +24,7 @@ let ball = {
     vx: 1,
     vy: 1,
     speed: 5,
-    speedHit: 0.08
+    speedHit: 0.1
 };
 
 let state = `title`;
@@ -40,8 +40,19 @@ let square = null;
 let backgroundColor = 0;
 
 let showDistractingText = false;
+let showSecondText = false;
+let showThirdText = false;
+let showFourthText = false;
+let showFifthText = false;
 let showLifeText = false;
 let showFastText = false;
+let showPaceText = false;
+let showSchoolText = false;
+let showJobText = false;
+let showRentText = false;
+let showFamilyText = false;
+let showFriendsText = false;
+let showAttentionText = false;
 
 function setup() {
     createCanvas (windowWidth, windowHeight);
@@ -67,8 +78,24 @@ function draw() {
     if (collisionCount === 5) {
         showDistractingText = true;
     }
-    if (collisionCount === 10) {
+    if (collisionCount === 6) {
         showDistractingText = false;
+        showSecondText = true;
+    }
+    if (collisionCount === 7) {
+        showSecondText = false;
+        showThirdText = true;
+    }
+    if (collisionCount === 8) {
+        showThirdText = false;
+        showFourthText = true;
+    }
+    if (collisionCount === 9) {
+        showFourthText = false;
+        showFifthText = true;
+    }
+    if (collisionCount === 10) {
+        showFifthText = false;
         showLifeText = true;
     }
     if (collisionCount === 15) {
@@ -77,27 +104,117 @@ function draw() {
     }
     if (collisionCount === 20){
         showFastText = false;
+        showSchoolText = true;
     }
+    if (collisionCount === 25){
+        showWorkText = true;
+    }
+    if (collisionCount === 25){
+        showRentText = true;
+        
+    }
+    if (collisionCount === 25){
+        showFamilyText = true;
+        
+    }
+    if (collisionCount === 25){
+        showFriendsText = true;
+        
+    }
+    if (collisionCount === 25){
+        showSchoolText = false;
+        showWorkText = false;
+        showRentText = false;
+        showFamilyText = false;
+        showFriendsText = false;
+        showAttentionText = true;
+ 
+
 
     if (showDistractingText) {
         textSize(20);
         fill(255, 255, 255);
         textAlign(CENTER, CENTER);
-        text("Hey! Am I distracting you?", width / 2, height / 2);
+        text("Hey there!", width / 2, height / 2);
     }
 
+    if (showSecondText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("Am I distracting you?", width / 2, height / 2);
+    }
+    if (showThirdText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("Because life is all about distractions.", width / 2, height / 2);
+    }
+    if (showFourthText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("Some are good and some are bad.", width / 2, height / 2);
+    }
+    if (showFifthText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("Watching this ball bounce got me thinking...", width / 2, height / 2);
+    }
     if (showLifeText) {
         textSize(20);
         fill(255, 255, 255);
         textAlign(CENTER, CENTER);
         text("This ball is like life, bouncing all over the place. It is unpredictable.", width/2, height / 2 + 50);
     }
-
     if (showFastText) {
         textSize(20);
         fill(255, 255, 255);
         textAlign(CENTER, CENTER);
         text("Life often move faster as we journey through it.", width/2, height / 2 + 50);
+    }
+    if (showPaceText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("At times, life speeds up to a point where we struggle to keep up. Like this ball.", width/2, height / 2 + 50);
+    }
+    if (showSchoolText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("School assignments,", width/2, height / 2 + 50);
+    }
+    if (showJobText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("part time job,", width/2, height / 2 + 50);
+    }
+    if (showRentText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("rent is due,", width/2, height / 2 + 50);
+    }
+    if (showFamilyText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("family time,", width/2, height / 2 + 50);
+    }
+    if (showFriendsText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("friends are waiting,", width/2, height / 2 + 50);
+    }
+    if (showAttentionText) {
+        textSize(20);
+        fill(255, 255, 255);
+        textAlign(CENTER, CENTER);
+        text("You good? You're not even paying attention to me.", width/2, height / 2 + 50);
     }
 
 function title() {
@@ -187,8 +304,8 @@ function bottomScreen() {
 //check for objects colliding
 function playerCollision() {
     if (state === 'simulation' && ball.x - ball.size < player.x + player.w / 2 && ball.x + ball.size > player.x - player.w / 2 && ball.y + ball.size > player.y - player.h / 2 && ball.y - ball.size < player.y + player.h / 2) {
-        ball.vx = ball.vx * 1; + ball.speedHit;
-        ball.vy += random(-0.5, 0.5);
+        ball.vx = ball.vx * 1 + ball.speedHit;
+        //ball.vy += random(0, 0.5);
         ball.vy = ball.vy * -1;
         ball.vx = random(-0.5, 0.5);
         collisionCount++;
