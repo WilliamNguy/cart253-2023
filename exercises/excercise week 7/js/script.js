@@ -1,33 +1,19 @@
-/**
- * Title of Project
- * Author Name
- * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
- */
+
 
 "use strict";
 
-let fish1;
-let fish2;
-let fish3;
-let fish4;
+let party = [];
 
 
-
-function preload() {
-
-}
-
-
+function preload() {}
 
 function setup() {
     createCanvas (windowWidth,windowHeight);
 
-    fish1 = createFish(random(0,width), random(0,height));
-    fish2 = createFish(random(0,width), random(0,height));
-    fish3 = createFish(random(0,width), random(0,height));
-    fish4 = createFish(random(0,width), random(0,height));
+    for (let i = 0; 1 < 4; i++) {
+        party[i] = createFish(random(0, width), random(0, height));
+    }
+
 }
 
 function createFish(x,y) {
@@ -47,15 +33,14 @@ function createFish(x,y) {
 function draw() {
     background (0);
 
-    moveFish(fish1);
-    moveFish(fish2);
-    moveFish(fish3);
-    moveFish(fish4);
+    for (let i = 0; i < 4; i++) {
+        moveFish(party[i]);
+    }
 
-    displayFish(fish1);
-    displayFish(fish2);
-    displayFish(fish3);
-    displayFish(fish4);
+    for (let i = 0; i < 4; i++) {
+        displayFish(party[i]);
+    }
+
 }
 
 function moveFish(fish) {
