@@ -14,10 +14,10 @@ function preload() {}
 function setup() {
     createCanvas (windowWidth,windowHeight);
 
-    player = createPlayer(width/2,height/2,5, color(100,100,200));
+    player = createPlayer(width/2,height/2,5, color(0));
 
     for (let i = 0; i < partySize; i++) {
-        party[i] = createFish(random(0, width), random(0, height));
+        party[i] = createVirus(random(0, width), random(0, height));
     }
 
 }
@@ -31,8 +31,8 @@ function createPlayer(x,y,size,c) {
     };
 }
 
-function createFish(x,y) {
-    let fish = {
+function createVirus(x,y) {
+    let virus = {
         x: x,
         y: y,
         size: 50,
@@ -40,13 +40,19 @@ function createFish(x,y) {
         vy: 0,
         speed: 2
     };
-    return fish;
+    return virus;
 }
 
 
 
 function draw() {
-    background (0);
+    background (208,106,110);
+
+    textSize(15);
+    fill(255,255,255);
+    textAlign(RIGHT,CENTER);
+    text("Find your way out of the screen while avoiding the bacteria!", width* 3/4,height * 3/4);
+
 
     if (gameState === "simulation") {
         movePlayer(player);
@@ -54,9 +60,11 @@ function draw() {
         checkCollisions();
 
         for (let i = 0; i < party.length; i++) {
-            moveFish(party[i]);
+            moveVirus(party[i]);
             displayFish(party[i]);
         }
+
+
     }
     else if (gameState === "win") {
         displayWinScreen();
@@ -65,9 +73,7 @@ function draw() {
         displayLoseScreen();
     }
 
-    // movePlayer(player);
-    // displayPlayer(player);
-
+   
 
 }
 
@@ -99,49 +105,51 @@ function displayPlayer(player) {
     pop();
 }
 
-function moveFish(fish) {
+function moveVirus(virus) {
     let change = random(0,1);
     if (change < 0.05) {
-        fish.vx = random(-fish.speed, fish.speed);
-        fish.vy = random(-fish.speed, fish.speed);
+        virus.vx = random(-virus.speed, virus.speed);
+        virus.vy = random(-virus.speed, virus.speed);
     }
 
-    fish.x = fish.x + fish.vx;
-    fish.y = fish.y + fish.vy;
+    virus.x = virus.x + virus.vx;
+    virus.y = virus.y + virus.vy;
 
-    fish.x = constrain(fish.x, 0, width);
-    fish.y = constrain(fish.y, 0, height);
+    virus.x = constrain(virus.x, 0, width);
+    virus.y = constrain(virus.y, 0, height);
 }
 
-function displayFish(fish) {
+
+function displayFish(virus) {
     push();
-    fill(200,100,100);
-    noStroke();
-    ellipse(fish.x,fish.y,fish.size);
+    fill(66,236,108);
+    strokeWeight(8);
+    stroke(5, 172, 40);
+    ellipse(virus.x,virus.y,virus.size);
     pop();
 }
 
 function checkCollisions() {
     for (let i = 0; i < party.length; i++) {
-        let fish = party[i];
-        let d = dist(player.x, player.y, fish.x, fish.y);
-        if (d < player.size / 2 + fish.size / 2) {
+        let virus = party[i];
+        let d = dist(player.x, player.y, virus.x, virus.y);
+        if (d < player.size / 2 + virus.size / 2) {
             gameState = "lose";
-            break;
+            
         }
     }
 }
 
 function displayWinScreen() {
-    textSize(32);
-    fill(0,255,0);
+    textSize(42);
+    fill(250,248,238);
     textAlign(CENTER,CENTER);
-    text("WIN!", width/2,height/2);
+    text("FREE AT LAST!", width/2,height/2);
 }
 
 function displayLoseScreen() {
-    textSize(32);
-    fill(255,0,0);
+    textSize(42);
+    fill(0);
     textAlign(CENTER,CENTER);
-    text("LOST!", width/2,height/2);
+    text("CAUGHT!", width/2,height/2);
 }
