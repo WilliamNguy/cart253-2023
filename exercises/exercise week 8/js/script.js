@@ -10,7 +10,8 @@
 
 let gravityForce = 0.0025;
 let paddle;
-let secondPaddle;
+let verticalPaddle;
+let verticalPaddleSpeed = 5;
 let balls = [];
 let numBalls = 10;
 
@@ -31,9 +32,7 @@ function setup() {
     paddle = new Paddle(300,20);
 
     //Creating a second paddle and putting it vertically on the right side of the screen.
-    secondPaddle = new Paddle(20,300);
-    secondPaddle.x = width - secondPaddle.width/2;
-    secondPaddle.y = height/2;
+    verticalPaddle = new VerticalPaddle(20,300);
 
     
     for (let i = 0; i < numBalls; i++) {
@@ -51,20 +50,31 @@ function setup() {
 function draw() {
     background(0);
 
+    // //mouvement and display for second paddle
+    // verticalPaddle.move();
+    // verticalPaddle.display();
+
+    // make second paddle move with keys
+    if (keyIsDown(UP_ARROW)) {
+        verticalPaddle.move(-verticalPaddleSpeed);
+    }
+    else if (keyIsDown(DOWN_ARROW)) {
+        verticalPaddle.move(verticalPaddleSpeed);
+    }
+    verticalPaddle.display();
+
     paddle.move();
     paddle.display();
 
-    //mouvement and display for second paddle
-    secondPaddle.move();
-    secondPaddle.display();
+    
 
     for (let i = 0; i < balls.length; i++) {
         let ball = balls[i];
         if (ball.active);
         ball.gravity(gravityForce);
         ball.move();
+        ball.bounce(verticalPaddle);// add collision for second paddle.
         ball.bounce(paddle);
-        ball.bounce(secondPaddle);// add collision for second paddle.
         ball.display();
     }
 }

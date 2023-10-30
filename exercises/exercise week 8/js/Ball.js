@@ -31,7 +31,7 @@ class Ball {
         }
     }
 
-    bounce(paddle) {
+    bounce(paddle, verticalPaddle) {
         if (this.x > paddle.x - paddle.width/2  && this.x < paddle.x + paddle.width/2 && this.y + this.size/2 > paddle.y - paddle.height/2 && this.y - this.size/2 < paddle.y + paddle.height/2) {
         //Bounce
         let dx = this.x - paddle.x;
@@ -41,6 +41,14 @@ class Ball {
         this.ay = 0;
         }
 
+        //Make bounce off the left screen
+        if (this.x - this.size/2 < 0) {
+            this.x = this.size/2;
+            this.vx = -this.vx;
+            this.ax = 0;
+        }
+
+    
 
         
     }
