@@ -3,7 +3,7 @@ class VerticalPaddle {
         this.width = w;
         this.height = h;
         this.x = width - this.width/2;
-        this.y = 0; 
+        this.y = height/2; 
     }
     move(speed) {
         // this.y = mouseY;
@@ -14,7 +14,7 @@ class VerticalPaddle {
     display() {
         push();
         fill(255);
-        noStroke(0);
+        noStroke();
         rectMode(CENTER);
         rect(this.x,this.y,this.width,this.height);
         pop();

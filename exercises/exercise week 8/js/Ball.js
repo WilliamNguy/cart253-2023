@@ -40,6 +40,14 @@ class Ball {
         this.vy = -this.vy;
         this.ay = 0;
         }
+        // else if (
+        //     this.x + this.size/2 > verticalPaddle.x - verticalPaddle.width/2 && this.x - this.size/2 < verticalPaddle.x + verticalPaddle.width/2 && this.y + this.size/2 > verticalPaddle.y - verticalPaddle.height/2 && this.y - this.size/2 < verticalPaddle.y + verticalPaddle.height/2
+        // ) {
+        //     let dy = this.y - verticalPaddle.y;
+        //     this.vy = this.vy + map(dy, -verticalPaddle.height/2, verticalPaddle.height/ 2, -2, 2);
+        //     this.vx = -this.vx;
+        //     this.ay = 0;
+        // }
 
         //Make bounce off the left screen
         if (this.x - this.size/2 < 0) {

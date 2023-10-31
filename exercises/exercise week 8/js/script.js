@@ -13,7 +13,9 @@ let paddle;
 let verticalPaddle;
 let verticalPaddleSpeed = 5;
 let balls = [];
-let numBalls = 10;
+let numBalls = 1;
+// setting game states
+let gameState = "simulation";
 
 /**
  * Description of preload
@@ -28,6 +30,7 @@ function preload() {
 */
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
 
     paddle = new Paddle(300,20);
 
@@ -50,31 +53,47 @@ function setup() {
 function draw() {
     background(0);
 
-    // //mouvement and display for second paddle
-    // verticalPaddle.move();
-    // verticalPaddle.display();
-
-    // make second paddle move with keys
-    if (keyIsDown(UP_ARROW)) {
-        verticalPaddle.move(-verticalPaddleSpeed);
-    }
-    else if (keyIsDown(DOWN_ARROW)) {
-        verticalPaddle.move(verticalPaddleSpeed);
-    }
-    verticalPaddle.display();
-
-    paddle.move();
-    paddle.display();
-
+    if (gameState === "simulation") {
+        if (keyIsDown(UP_ARROW)) {
+            verticalPaddle.move(-verticalPaddleSpeed);
+        }
+        else if (keyIsDown(DOWN_ARROW)) {
+            verticalPaddle.move(verticalPaddleSpeed);
+        }
+        verticalPaddle.display();
     
+        paddle.move();
+        paddle.display();
+        
+        for (let i = 0; i < balls.length; i++) {
+            let ball = balls[i];
+            if (ball.active); {
+                ball.gravity(gravityForce);
+            ball.move();
+            ball.bounce(verticalPaddle);// add collision for second paddle.
+            ball.bounce(paddle);
+            ball.display();
 
-    for (let i = 0; i < balls.length; i++) {
-        let ball = balls[i];
-        if (ball.active);
-        ball.gravity(gravityForce);
-        ball.move();
-        ball.bounce(verticalPaddle);// add collision for second paddle.
-        ball.bounce(paddle);
-        ball.display();
+            if (ball.x + ball.size/2 > width) {
+                gameState = "Win";
+            }
+            else if (ball.y + ball.size/2 > height) {
+                gameState = "Lose";
+                }
+            }           
+        }
     }
+    else if (gameState === "Win") {
+        fill(255);
+        textSize(32);
+        textAlign(CENTER,CENTER);
+        text("You Win!", width/2, height/2);
+    }
+    else if (gameState === "Lose") {
+        fill(255);
+        textSize(32);
+        textAlign(CENTER,CENTER);
+        text("You Lose!", width/2, height/2);
+    }
+    
 }
