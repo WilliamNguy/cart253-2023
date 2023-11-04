@@ -16,6 +16,7 @@ let balls = [];
 let numBalls = 1;
 // setting game states
 let gameState = "simulation";
+let virusSquare;
 
 /**
  * Description of preload
@@ -44,6 +45,8 @@ function setup() {
         let ball = new Ball(x,y);
         balls.push(ball);
     }
+
+    virusSquare = new VirusSquare(0,0,20,20);
 }
 
 
@@ -54,6 +57,8 @@ function draw() {
     background(0);
 
     if (gameState === "simulation") {
+        virusSquare.move();
+        virusSquare.display();
         if (keyIsDown(UP_ARROW)) {
             verticalPaddle.move(-verticalPaddleSpeed);
         }
@@ -82,15 +87,29 @@ function draw() {
                 }
             }           
         }
+        //add instruction to the game
+        push();
+        fill(32,194,14);
+        textSize(16);
+        textAlign(RIGHT, TOP);
+        text("This program is hacked! Nothing seems to be working. You must bounce the glitched ball to the left side of the screen to fix the program.", width, 0);
+        pop();
+        push();
+        fill(32,194,14);
+        textSize(16);
+        textAlign(RIGHT, TOP);
+        text("Do not let the square at the top reach the other end.", width, 20);
+        pop();
+        
     }
     else if (gameState === "Win") {
-        fill(255);
+        fill(32,194,14);
         textSize(32);
         textAlign(CENTER,CENTER);
         text("You Win!", width/2, height/2);
     }
     else if (gameState === "Lose") {
-        fill(255);
+        fill(32,194,14);
         textSize(32);
         textAlign(CENTER,CENTER);
         text("You Lose!", width/2, height/2);

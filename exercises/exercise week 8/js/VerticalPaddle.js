@@ -2,7 +2,7 @@ class VerticalPaddle {
     constructor(w,h) {
         this.width = w;
         this.height = h;
-        this.x = width - this.width/2;
+        this.x = width - this.width/2 - 100;
         this.y = height/2; 
     }
     move(speed) {
@@ -13,7 +13,7 @@ class VerticalPaddle {
 
     display() {
         push();
-        fill(255);
+        fill(32,194,14);
         noStroke();
         rectMode(CENTER);
         rect(this.x,this.y,this.width,this.height);

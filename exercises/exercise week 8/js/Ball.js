@@ -7,7 +7,9 @@ class Ball {
         this.ax = 0;
         this.ay = 0;
         this.maxSpeed = 10;
-        this.size = 40;
+
+
+        this.size = random(20, 60);
         this.active = true;
     }
 
@@ -63,8 +65,9 @@ class Ball {
     
 display() {
     push();
-    fill(255,50,50);
+    fill(32,194,14);
     stroke(0);
+    this.size = random(20, 60);
     ellipse(this.x,this.y,this.size);
     pop();
 }
