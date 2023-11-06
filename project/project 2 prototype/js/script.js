@@ -8,7 +8,9 @@
 
 "use strict";
 
-
+let movePlayer;
+let screenManager
+// let screens = [];
 
 /**
  * Description of preload
@@ -23,7 +25,9 @@ function preload() {
 */
 function setup() {
     createCanvas(windowWidth,windowHeight)
-
+    movePlayer = new Player (width/2,height/2,50);
+    screenManager = new ScreenManager();
+    background(255);
 }
 
 
@@ -31,6 +35,14 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    background(0);
+    background(255);
+    movePlayer.display();
+    movePlayer.moveKeyPress();
+    screenManager.checkTransition(movePlayer);
+    screenManager.screens[screenManager.currentScreen].display();
 
+    if (!screenManager.isPlayerInCurrentScreen(movePlayer.x,movePlayer.y)) {
+        screenManager.switchToNextScreen();
+    }
 }
+
