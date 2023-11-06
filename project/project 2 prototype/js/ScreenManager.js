@@ -11,12 +11,18 @@ class ScreenManager {
         return {r,g,b,displayFunction};
     }
     displayScreen1() {
-        fill(255,0,0);
-        rect(width/2,height/2,100,100);
+        if (this.currentScreen === 0) {
+            background(255,0,0);
+        }
+        // fill(255,0,0);
+        // rect(width/2,height/2,100,100);
     }
     displayScreen2() {
-        fill(0,255,0);
-        ellipse(width/2,height/2,100,100);
+        if (this.currentScreen === 1) {
+            background(0,255,0);
+        }
+        // fill(0,255,0);
+        // ellipse(width/2,height/2,100,100);
     }
     isPlayerInCurrentScreen(playerX, playerY) {
         const screen = this.screens[this.currentScreen];
@@ -26,6 +32,9 @@ class ScreenManager {
     }
     switchToNextScreen() {
         this.currentScreen = (this.currentScreen + 1) % this.screens.length;
+    }
+    switchToPreviousScreen() {
+        this.currentScreen = (this.currentScreen - 1 + this.screens.length) % this.screens.length;
     }
     checkTransition(player) {
         const currentScreen = this.screens[this.currentScreen];
@@ -49,7 +58,7 @@ class ScreenManager {
         // else if (player.y > height) {
 
         // }
-        screenManager.screens[screenManager.currentScreen].display();
+        // screenManager.screens[screenManager.currentScreen].display();
 
     }
 }

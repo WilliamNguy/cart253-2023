@@ -39,7 +39,6 @@ function draw() {
     movePlayer.display();
     movePlayer.moveKeyPress();
     screenManager.checkTransition(movePlayer);
-    screenManager.screens[screenManager.currentScreen].display();
 
     if (!screenManager.isPlayerInCurrentScreen(movePlayer.x,movePlayer.y)) {
         screenManager.switchToNextScreen();
