@@ -36,12 +36,42 @@ function setup() {
 */
 function draw() {
     background(255);
-    movePlayer.display();
-    movePlayer.moveKeyPress();
+   
     screenManager.checkTransition(movePlayer);
 
-    if (!screenManager.isPlayerInCurrentScreen(movePlayer.x,movePlayer.y)) {
-        screenManager.switchToNextScreen();
+    if (screenManager.currentScreen === 0) {
+        // background(255,0,0);
+        screenManager.displayScreen1();
+        movePlayer.display();
+        movePlayer.moveKeyPress();
     }
+    else if (screenManager.currentScreen === 1) {
+        // background(0,255,0);
+        screenManager.displayScreen2();
+        movePlayer.display();
+        movePlayer.moveKeyPress();
+    }
+    else if (screenManager.currentScreen === - 1) {
+        // background(0,255,0);
+        screenManager.displayScreen3();
+        movePlayer.display();
+        movePlayer.moveKeyPress();
+    }
+    else if (screenManager.currentScreen === 2) {
+        // background(0,255,0);
+        screenManager.displayScreen4();
+        movePlayer.display();
+        movePlayer.moveKeyPress();
+    }
+    else {
+        // background(0,255,0);
+        screenManager.displayScreen5();
+        movePlayer.display();
+        movePlayer.moveKeyPress();
+    }
+
+    // if (!screenManager.isPlayerInCurrentScreen(movePlayer.x,movePlayer.y)) {
+    //     screenManager.switchToNextScreen();
+    // }
 }
 
