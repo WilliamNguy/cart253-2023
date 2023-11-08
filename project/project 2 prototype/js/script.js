@@ -1,10 +1,4 @@
-/**
- * Title of Project
- * Author Name
- * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
- */
+// Topdown view of a puzzle game. Tested out ways to make rooms/screens. Took a while but managed to make it work.
 
 "use strict";
 
