@@ -1,30 +1,31 @@
 "use strict";
 
-let oscillator;
-let t = 0;
+let synth;
+let notes = [`F3`,`G3`,`Ab3`,`Bb3`,`C3`,`Db3`,`Eb3`,`F4`]
+let currentNote = 0;
 
 function setup() {
     createCanvas (windowWidth, windowHeight);
-    userStartAudio();
 
-    oscillator = new p5.Oscillator(440,`sine`);
-    oscillator.amp(0.2);   
+    synth = new p5.PolySynth();
+
+    userStartAudio();
 }
 
 function draw() {
    background(0);
-
-   let noiseValue = noise(t);
-   let newFreq = map(noiseValue,0,1,440,800);
-   oscillator.freq(newFreq);
-
-   t = t + 0.1;
 }
 
-function mousePressed() {
-   oscillator.start();
+function keyPressed() {
+    setInterval(playRandomNote,500);
 }
 
-function mouseReleased() {
-    oscillator.stop();
+function playRandomNote() {
+    let note = notes[currentNote];
+    synth.play(note,1,0,0.1);
+
+    currentNote = currentNote + 1;
+    if (currentNote === notes.length) {
+        currentNote = 0;
+    }
 }
