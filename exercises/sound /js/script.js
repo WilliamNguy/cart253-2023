@@ -1,27 +1,30 @@
 "use strict";
 
-let barkSFX;
-
-function preload() {
-    barkSFX = loadSound(`assets/sounds/bark.wav`)
-}
-
+let oscillator;
+let t = 0;
 
 function setup() {
     createCanvas (windowWidth, windowHeight);
     userStartAudio();
+
+    oscillator = new p5.Oscillator(440,`sine`);
+    oscillator.amp(0.2);   
 }
-
-
 
 function draw() {
    background(0);
 
-   let newRate = map(mouseX,0,width,-3,3);
-   barkSFX.rate(newRate);
+   let noiseValue = noise(t);
+   let newFreq = map(noiseValue,0,1,440,800);
+   oscillator.freq(newFreq);
+
+   t = t + 0.1;
 }
 
 function mousePressed() {
-    barkSFX.loop();
+   oscillator.start();
+}
 
+function mouseReleased() {
+    oscillator.stop();
 }
