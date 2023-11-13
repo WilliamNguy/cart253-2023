@@ -8,6 +8,8 @@
 
 "use strict";
 
+let balls = [];
+
 /**
  * Description of preload
 */
@@ -20,6 +22,7 @@ function preload() {
  * Description of setup
 */
 function setup() {
+    createCanvas (windowWidth, windowHeight);
 
 }
 
@@ -28,5 +31,5 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-
+    background(0);
 }
