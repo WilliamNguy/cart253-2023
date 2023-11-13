@@ -18,11 +18,18 @@ let backgroundMusic;
 
 let movingSound;
 
+let doorSound;
+
 let door = {};
+
+let mic;
+
+let isBackgroundGreen = false;
 
 function preload() {
     backgroundMusic = loadSound('assets/sounds/backgroundsong.mp3');
     movingSound = loadSound('assets/sounds/minecraftfootsteps.mp3');
+    doorSound = loadSound('assets/sounds/minecraftdoor.mp3');
 }
 
 
@@ -32,6 +39,10 @@ function preload() {
 function setup() {
     createCanvas (windowWidth, windowHeight);
     userStartAudio();
+
+    mic = new p5.AudioIn();
+    mic.start();
+    // background (0);
     backgroundMusic.loop();
     player = new Player(width/2,height/2,50);
     newDoor();
@@ -44,7 +55,25 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    background(0);
+    background (0);
+    let vol = mic.getLevel()
+    console.log('amp:',vol);
+
+    // isBackgroundGreen = vol > 0.3;
+
+    if (vol > 0.3) {
+        background(0,255,0);
+        // isBackgroundGreen = true;
+    } 
+    else {
+        background(0);
+    
+    }
+
+    fill(255);
+    textSize(16);
+    textAlign(LEFT, TOP);
+    text("Scream for background switch || Spacebar to play/stop music || Arrow keys to move player towards brown doors (SOUND ON)",400,10)
 
     if (door.appear) { 
         push();
@@ -100,6 +129,7 @@ function newDoor() {
             appear: true
         };
     // }   
+    doorSound.play();
 }
 
 function openDoor() {
