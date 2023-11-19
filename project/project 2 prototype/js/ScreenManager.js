@@ -2,13 +2,16 @@ class ScreenManager {
     constructor() {
         this.currentScreen = 0;
         // this.backgroundMusic = null;
+        // this.transitionSound = null;
     }
 
-    // preload() {
+    preload() {
+        this.transitionSound = loadSound('assets/sounds/minecraftdoor.mp3');
+
     //     if(this.currentScreen === 0) {
     //         this.backgroundMusic = loadSound('assets/sounds/classical.mp3');
     //     }
-    // }
+    }
 
  
     displayScreen1() {
@@ -59,6 +62,7 @@ class ScreenManager {
     checkTransition (player) {
         
         if(this.currentScreen !== player.previousScreen) {
+            this.transitionSound.play();
             player.previousScreen = this.currentScreen;
 
             if(backgroundMusic && backgroundMusic.isPlaying()) {
@@ -66,6 +70,9 @@ class ScreenManager {
             }
             if(backgroundMusic && backgroundMusic1.isPlaying()) {
                 backgroundMusic1.stop();
+            }
+            if(this.transitionSound) {
+                this.transitionSound.play();
             }
             if(this.currentScreen === 0) {
                 if(backgroundMusic) {

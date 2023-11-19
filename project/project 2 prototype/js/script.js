@@ -7,6 +7,7 @@ let screenManager;
 let backgroundMusic;
 let backgroundMusic1;
 let moveSound;
+let transitionSound;
 // let screens = [];
 
 
@@ -17,6 +18,8 @@ function preload() {
     backgroundMusic = loadSound('assets/sounds/classical.mp3');
     backgroundMusic1 = loadSound('assets/sounds/drillclassic.mp3');
     moveSound = loadSound('assets/sounds/minecraftfootsteps.mp3');
+    transitionSound = loadSound('assets/sounds/minecraftdoor.mp3');
+
 }
 
 
@@ -27,6 +30,7 @@ function setup() {
     createCanvas(windowWidth,windowHeight)
     movePlayer = new Player (width/2,height/2,50);
     screenManager = new ScreenManager();
+    screenManager.preload();
     background(255);
 
     if (backgroundMusic) {
