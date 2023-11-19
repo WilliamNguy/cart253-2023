@@ -4,12 +4,15 @@
 
 let movePlayer;
 let screenManager
+let backgroundMusic
 // let screens = [];
+
 
 /**
  * Description of preload
 */
 function preload() {
+    backgroundMusic = loadSound('assets/sounds/classical.mp3');
 
 }
 
@@ -22,6 +25,10 @@ function setup() {
     movePlayer = new Player (width/2,height/2,50);
     screenManager = new ScreenManager();
     background(255);
+
+    if (backgroundMusic) {
+        backgroundMusic.loop();
+    }
 }
 
 

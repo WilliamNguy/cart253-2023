@@ -1,7 +1,14 @@
 class ScreenManager {
     constructor() {
         this.currentScreen = 0;
+        // this.backgroundMusic = null;
     }
+
+    // preload() {
+    //     if(this.currentScreen === 0) {
+    //         this.backgroundMusic = loadSound('assets/sounds/classical.mp3');
+    //     }
+    // }
 
  
     displayScreen1() {
@@ -50,6 +57,20 @@ class ScreenManager {
         this.currentScreen = (this.currentScreen - 2)
     }
     checkTransition (player) {
+        
+        if(this.currentScreen !== player.previousScreen) {
+            player.previousScreen = this.currentScreen;
+
+            if(backgroundMusic && backgroundMusic.isPlaying()) {
+                backgroundMusic.stop();
+            }
+            if(this.currentScreen === 0) {
+                if(backgroundMusic) {
+                    backgroundMusic.loop();
+                }
+            }
+        }
+
         if(player.x < 0) {
             this.switchToPreviousScreen();
             player.x = width;
