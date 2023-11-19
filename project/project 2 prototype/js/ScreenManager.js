@@ -2,7 +2,7 @@ class ScreenManager {
     constructor() {
         this.currentScreen = 0;
         // this.backgroundMusic = null;
-        // this.transitionSound = null;
+        this.transitionSound = null;
     }
 
     preload() {
@@ -17,29 +17,43 @@ class ScreenManager {
     displayScreen1() {
         if (this.currentScreen === 0) {
             background(255,255,255);
+            this.screenBorders();
         }
    
     }
     displayScreen2() {
         if (this.currentScreen === 1) {
             background(0,255,0);
+            this.screenBorders();
         }
     
     }
     displayScreen3() {
         if (this.currentScreen === -1) {
             background(255,0,0);
+            this.screenBorders();
         }
     }
     displayScreen4() {
         if (this.currentScreen === 2) {
             background(0,0,255);
+            this.screenBorders();
         }
     }
     displayScreen5() {
         if (this.currentScreen === -2) {
             background(255,255,0);
+            this.screenBorders();
         }
+    }
+    screenBorders() {
+        fill(0);
+        rect(0,0,20,500);
+        rect(width-20,0,20,height);
+        rect(0,0,width,20);
+        rect(0,height-20,width,20);
+
+        
     }
     isPlayerInCurrentScreen(playerX, playerY) {
         const screen = this.screens[this.currentScreen];
@@ -57,8 +71,9 @@ class ScreenManager {
         this.currentScreen = (this.currentScreen + 2)
     }
     switchToPreviousBottomScreen() {
-        this.currentScreen = (this.currentScreen - 2)
+        this.currentScreen = (this.currentScreen - 2) 
     }
+    
     checkTransition (player) {
         
         if(this.currentScreen !== player.previousScreen) {
