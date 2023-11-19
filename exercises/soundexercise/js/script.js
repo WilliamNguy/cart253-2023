@@ -69,7 +69,7 @@ function draw() {
         background(0);
     
     }
-
+ 
     fill(255);
     textSize(16);
     textAlign(LEFT, TOP);
