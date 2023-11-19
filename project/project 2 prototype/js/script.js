@@ -3,8 +3,10 @@
 "use strict";
 
 let movePlayer;
-let screenManager
-let backgroundMusic
+let screenManager;
+let backgroundMusic;
+let backgroundMusic1;
+let moveSound;
 // let screens = [];
 
 
@@ -13,7 +15,8 @@ let backgroundMusic
 */
 function preload() {
     backgroundMusic = loadSound('assets/sounds/classical.mp3');
-
+    backgroundMusic1 = loadSound('assets/sounds/drillclassic.mp3');
+    moveSound = loadSound('assets/sounds/minecraftfootsteps.mp3');
 }
 
 
@@ -28,6 +31,9 @@ function setup() {
 
     if (backgroundMusic) {
         backgroundMusic.loop();
+    }
+    else if (backgroundMusic1) {
+        backgroundMusic1.loop();
     }
 }
 
@@ -45,30 +51,35 @@ function draw() {
         screenManager.displayScreen1();
         movePlayer.display();
         movePlayer.moveKeyPress();
+        movePlayer.keyReleased();
     }
     else if (screenManager.currentScreen === 1) {
         // background(0,255,0);
         screenManager.displayScreen2();
         movePlayer.display();
         movePlayer.moveKeyPress();
+        movePlayer.keyReleased();
     }
     else if (screenManager.currentScreen === - 1) {
         // background(0,255,0);
         screenManager.displayScreen3();
         movePlayer.display();
         movePlayer.moveKeyPress();
+        movePlayer.keyReleased();
     }
     else if (screenManager.currentScreen === 2) {
         // background(0,255,0);
         screenManager.displayScreen4();
         movePlayer.display();
         movePlayer.moveKeyPress();
+        movePlayer.keyReleased();
     }
     else {
         // background(0,255,0);
         screenManager.displayScreen5();
         movePlayer.display();
         movePlayer.moveKeyPress();
+        movePlayer.keyReleased();
     }
 
     // if (!screenManager.isPlayerInCurrentScreen(movePlayer.x,movePlayer.y)) {

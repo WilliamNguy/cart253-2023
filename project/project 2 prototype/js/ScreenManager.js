@@ -64,11 +64,20 @@ class ScreenManager {
             if(backgroundMusic && backgroundMusic.isPlaying()) {
                 backgroundMusic.stop();
             }
+            if(backgroundMusic && backgroundMusic1.isPlaying()) {
+                backgroundMusic1.stop();
+            }
             if(this.currentScreen === 0) {
                 if(backgroundMusic) {
                     backgroundMusic.loop();
                 }
             }
+            else if (this.currentScreen === 1) {
+                if (backgroundMusic1) {
+                    backgroundMusic1.loop();
+                }
+            }
+
         }
 
         if(player.x < 0) {

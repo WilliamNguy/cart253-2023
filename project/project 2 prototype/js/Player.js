@@ -4,9 +4,25 @@ class Player {
         this.y = y;
         this.size = size;
         this.speed = 5;
+        this.previousScreen = 0;
+        this.isMoving = false;
+
     }
 
     move(dx,dy) {
+        if (dx !== 0 || dy !== 0) {
+            this.isMoving = true;
+            if (moveSound && !moveSound.isPlaying()) {
+                moveSound.play();
+            }
+        }
+        else {
+            this.isMoving = false;
+            if (moveSound && moveSound.isPlaying()) {
+            moveSound.stop();
+            }
+        }
+
         this.x += dx;
         this.y += dy;
     }
@@ -29,7 +45,16 @@ class Player {
         if (keyIsDown(DOWN_ARROW)) {
             this.move(0,5);
         }
+        
     
+    }
+    keyReleased() {
+        if(!keyIsDown(LEFT_ARROW)&& !keyIsDown(RIGHT_ARROW)&& !keyIsDown(UP_ARROW)&& !keyIsDown(DOWN_ARROW)) {
+            this.isMoving = false;
+            if(moveSound && moveSound.isPlaying()) {
+                moveSound.stop();
+            }
+        }
     }
 }
 
