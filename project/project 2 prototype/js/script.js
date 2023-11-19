@@ -8,6 +8,7 @@ let backgroundMusic;
 let backgroundMusic1;
 let moveSound;
 let transitionSound;
+let startGame = false;
 // let screens = [];
 
 
@@ -31,7 +32,12 @@ function setup() {
     movePlayer = new Player (width/2,height/2,50);
     screenManager = new ScreenManager();
     screenManager.preload();
-    background(255);
+    background(0);
+
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text("PLAY", width/2,height/2);
 
     if (backgroundMusic) {
         backgroundMusic.loop();
@@ -46,7 +52,14 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    background(255);
+    if (!startGame) {
+        if(mouseIsPressed) {
+            startGame = true;
+            background (255);
+        }
+    }
+    else {
+        background(255);
    
     screenManager.checkTransition(movePlayer);
 
@@ -89,5 +102,6 @@ function draw() {
     // if (!screenManager.isPlayerInCurrentScreen(movePlayer.x,movePlayer.y)) {
     //     screenManager.switchToNextScreen();
     // }
+    }
 }
 
