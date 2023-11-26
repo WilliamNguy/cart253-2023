@@ -48,13 +48,13 @@ class ScreenManager {
     }
     screenBorders() {
         fill(0);
-        rect(0,0,20,500);
-        rect(width-20,0,20,height);
-        rect(0,0,width,20);
+        rect(0,0,20,700); // left side
+        rect(width-20,0,20,height); // right side
+        rect(0,0,650,20); // top
+        rect(750,0,850,20);
         rect(0,height-20,width,20);
-
-        
     }
+
     isPlayerInCurrentScreen(playerX, playerY) {
         const screen = this.screens[this.currentScreen];
         return (
