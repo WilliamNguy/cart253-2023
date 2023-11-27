@@ -17,52 +17,61 @@ class ScreenManager {
     displayScreen1() {
         if (this.currentScreen === 0) {
             background(255,255,255);
-            this.screenBorders();
+            this.screenBorders1();
         }
    
     }
     displayScreen2() {
         if (this.currentScreen === 1) {
             background(0,255,0);
-            this.screenBorders();
         }
     
     }
     displayScreen3() {
         if (this.currentScreen === -1) {
             background(255,0,0);
-            this.screenBorders();
         }
     }
     displayScreen4() {
         if (this.currentScreen === 2) {
             background(0,0,255);
-            this.screenBorders();
         }
     }
     displayScreen5() {
         if (this.currentScreen === -2) {
             background(255,255,0);
-            this.screenBorders();
         }
     }
-    screenBorders() {
+    screenBorders1() {
         fill(0);
         rect(0,0,20,700); // left side
-        rect(width-20,0,20,height); // right side
-        rect(0,0,650,20); // top
-        rect(750,0,850,20);
+        rect(width-20,0,20,700); // right side
+        rect(0,0,700,20); // top
+        rect(800,0,width,20); // top
         rect(0,height-20,width,20);
     }
+    // screenBorders2() {
+
+    // }
+    // screenBorders3() {
+
+    // }
+    // screenBorders4() {
+
+    // }
+    // screenBorders() {
+
+    // }
+
 
     isPlayerInCurrentScreen(playerX, playerY) {
-        const screen = this.screens[this.currentScreen];
+        // const screen = this.screens[this.currentScreen];
         return (
             playerX >= 0 && playerX <= width && playerY >= 0 && playerY <= height
         );
     }
     switchToNextScreen() {
-        this.currentScreen = (this.currentScreen + 1) 
+        this.currentScreen = (this.currentScreen + 1)
     }
     switchToPreviousScreen() {
         this.currentScreen = (this.currentScreen - 1) 

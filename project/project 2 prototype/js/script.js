@@ -67,35 +67,35 @@ function draw() {
         // background(255,0,0);
         screenManager.displayScreen1();
         movePlayer.display();
-        movePlayer.moveKeyPress();
+        movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
     }
     else if (screenManager.currentScreen === 1) {
         // background(0,255,0);
         screenManager.displayScreen2();
         movePlayer.display();
-        movePlayer.moveKeyPress();
+        movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
     }
     else if (screenManager.currentScreen === - 1) {
         // background(0,255,0);
         screenManager.displayScreen3();
         movePlayer.display();
-        movePlayer.moveKeyPress();
+        movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
     }
     else if (screenManager.currentScreen === 2) {
         // background(0,255,0);
         screenManager.displayScreen4();
         movePlayer.display();
-        movePlayer.moveKeyPress();
+        movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
     }
     else {
         // background(0,255,0);
         screenManager.displayScreen5();
         movePlayer.display();
-        movePlayer.moveKeyPress();
+        movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
     }
 
