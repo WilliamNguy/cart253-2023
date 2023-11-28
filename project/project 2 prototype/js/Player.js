@@ -3,7 +3,7 @@ class Player {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.speed = 5;
+        this.speed = 0.5;
         this.previousScreen = 0;
         this.isMoving = false;
 
@@ -11,11 +11,11 @@ class Player {
 
     move(dx,dy,screenManager) {
 
-        let newX = this.x + dx;
-        let newY = this.y + dy;
+        let newX = this.x + dx * this.speed;
+        let newY = this.y + dy * this.speed;
     
     if (screenManager.currentScreen === 0) {
-        // Check for collisions with the specific black rectangles
+        // Check for collisions with starting screen borders
         const leftRectangle = newX - this.size / 2 <= 20 && newY + this.size / 2 >= 20 && newY - this.size / 2 <= 700 - 20;
         const rightRectangle = newX + this.size / 2 >= width - 20 && newY + this.size / 2 >= 20 && newY - this.size / 2 <= 700 - 20;
         const topRectangle = newY - this.size / 2 <= 27 && !(newX + this.size / 2 >= 750 && newX - this.size / 2 <= 750);
@@ -30,6 +30,7 @@ class Player {
         this.x = newX;
         this.y = newY;
     }
+    
         
 
         

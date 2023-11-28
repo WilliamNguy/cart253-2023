@@ -103,6 +103,7 @@ function draw() {
         movePlayer.keyReleased();
         for (let dot of screenManager.redDots) {
             dot.move();
+            dot.checkCollisionPlayer();
             dot.display();
         }
         for (let i = amountCubes; i < 2 * amountCubes; i++) {

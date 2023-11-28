@@ -38,6 +38,7 @@ class ScreenManager {
     displayScreen3() {
         if (this.currentScreen === -1) {
             background(255,0,0);
+            this.screenBorders3();
         }
     }
     displayScreen4() {
@@ -57,6 +58,13 @@ class ScreenManager {
         rect(0,0,700,30); // top
         rect(800,0,width,30); // top
         rect(0,height-20,width,20);
+    }
+    screenBorders3() {
+        fill(0);
+        rect(0,0,20,height); // left side
+        rect(width-20,0,20,700); // right side
+        rect(0,0,width,30); // top
+        rect(0,height-20,width,20); //bottom
     }
     // screenBorders2() {
 

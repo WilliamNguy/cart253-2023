@@ -20,4 +20,16 @@ class RedDots {
         fill(255,0,0);
         rect(this.x,this.y,this.size,this.size);
     }
+    checkCollisionPlayer() {
+        let playerX = movePlayer.x;
+        let playerY = movePlayer.y;
+        let playerSize = movePlayer.size;
+    
+        if (this.x + this.size > playerX - playerSize/2 && this.x < playerX + playerSize/2 && this.y + this.size > playerY - playerSize/2 && this.y < playerY + playerSize/2
+        ) {
+            movePlayer.x = 30;
+            movePlayer.y = height - 30;
+        }
+    }
 }
+
