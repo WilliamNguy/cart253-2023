@@ -9,6 +9,10 @@ let backgroundMusic1;
 let moveSound;
 let transitionSound;
 let startGame = false;
+let randomCube
+let cubes = [];
+let amountCubes = 5
+let collectedCubes = 0;
 // let screens = [];
 
 
@@ -30,6 +34,7 @@ function preload() {
 function setup() {
     createCanvas(windowWidth,windowHeight)
     movePlayer = new Player (width/2,height/2,50);
+    randomCube = new Cube();
     screenManager = new ScreenManager();
     screenManager.preload();
     background(0);
@@ -45,6 +50,16 @@ function setup() {
     else if (backgroundMusic1) {
         backgroundMusic1.loop();
     }
+    for (let i = 0; i < amountCubes; i++) {
+        cubes.push(new Cube());
+    }
+    for (let i = 0; i < amountCubes; i++) {
+        cubes.push(new Cube());
+    }
+    for (let i = 0; i < amountCubes; i++) {
+        cubes.push(new Cube());
+    }
+
 }
 
 
@@ -52,6 +67,7 @@ function setup() {
  * Description of draw()
 */
 function draw() {
+
     if (!startGame) {
         if(mouseIsPressed) {
             startGame = true;
@@ -59,9 +75,11 @@ function draw() {
         }
     }
     else {
-        background(255);
+        // background(255);
    
     screenManager.checkTransition(movePlayer);
+
+    
 
     if (screenManager.currentScreen === 0) {
         // background(255,0,0);
@@ -69,6 +87,13 @@ function draw() {
         movePlayer.display();
         movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
+        randomCube.display();
+        for (let i = 0; i < amountCubes; i++) {
+            cubes[i].display();
+            if (cubes[i].isPlayerTouch(movePlayer.x,movePlayer.y,movePlayer.size)) {
+                cubes[i].collect();
+            }
+        }
     }
     else if (screenManager.currentScreen === 1) {
         // background(0,255,0);
@@ -76,6 +101,16 @@ function draw() {
         movePlayer.display();
         movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
+        for (let dot of screenManager.redDots) {
+            dot.move();
+            dot.display();
+        }
+        for (let i = amountCubes; i < 2 * amountCubes; i++) {
+            cubes[i].display();
+            if (cubes[i].isPlayerTouch(movePlayer.x,movePlayer.y,movePlayer.size)) {
+                cubes[i].collect();
+            }
+        }
     }
     else if (screenManager.currentScreen === - 1) {
         // background(0,255,0);
@@ -83,6 +118,12 @@ function draw() {
         movePlayer.display();
         movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
+        for (let i = 2 * amountCubes; i < 3 * amountCubes; i++) {
+            cubes[i].display();
+            if (cubes[i].isPlayerTouch(movePlayer.x,movePlayer.y,movePlayer.size)) {
+                cubes[i].collect();
+            }
+        }
     }
     else if (screenManager.currentScreen === 2) {
         // background(0,255,0);
@@ -103,5 +144,12 @@ function draw() {
     //     screenManager.switchToNextScreen();
     // }
     }
+
+    fill(255);
+    textSize(20);
+    textAlign(LEFT, TOP);
+    text('Collected Cubes: ' + collectedCubes, 10, 10);
+    
+    
 }
 

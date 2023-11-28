@@ -18,7 +18,7 @@ class Player {
         // Check for collisions with the specific black rectangles
         const leftRectangle = newX - this.size / 2 <= 20 && newY + this.size / 2 >= 20 && newY - this.size / 2 <= 700 - 20;
         const rightRectangle = newX + this.size / 2 >= width - 20 && newY + this.size / 2 >= 20 && newY - this.size / 2 <= 700 - 20;
-        const topRectangle = newY - this.size / 2 <= 20 && !(newX + this.size / 2 >= 750 && newX - this.size / 2 <= 750);
+        const topRectangle = newY - this.size / 2 <= 27 && !(newX + this.size / 2 >= 750 && newX - this.size / 2 <= 750);
         const bottomRectangle = newY + this.size / 2 >= height - 20 && newX + this.size / 2 >= 20 && newX - this.size / 2 <= width;
     
         // If there are no collisions with the black rectangles, update the player's position

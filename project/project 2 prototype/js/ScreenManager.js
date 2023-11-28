@@ -3,6 +3,10 @@ class ScreenManager {
         this.currentScreen = 0;
         // this.backgroundMusic = null;
         this.transitionSound = null;
+        this.redDots = [];
+        for (let i = 0; i < 5; i++) {
+            this.redDots.push(new RedDots(i))
+        }
     }
 
     preload() {
@@ -25,6 +29,10 @@ class ScreenManager {
         if (this.currentScreen === 1) {
             background(0,255,0);
         }
+        for (let dot of this.redDots) {
+            dot.move();
+            dot.display();
+        }
     
     }
     displayScreen3() {
@@ -46,8 +54,8 @@ class ScreenManager {
         fill(0);
         rect(0,0,20,700); // left side
         rect(width-20,0,20,700); // right side
-        rect(0,0,700,20); // top
-        rect(800,0,width,20); // top
+        rect(0,0,700,30); // top
+        rect(800,0,width,30); // top
         rect(0,height-20,width,20);
     }
     // screenBorders2() {
