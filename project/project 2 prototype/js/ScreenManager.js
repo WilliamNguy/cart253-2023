@@ -2,6 +2,8 @@ class ScreenManager {
     constructor() {
         this.currentScreen = 0;
         // this.backgroundMusic = null;
+        this.backgroundImage = null;
+        this.backgroundImage2 = null;
         this.transitionSound = null;
         this.redDots = [];
         for (let i = 0; i < 5; i++) {
@@ -11,6 +13,8 @@ class ScreenManager {
 
     preload() {
         this.transitionSound = loadSound('assets/sounds/minecraftdoor.mp3');
+        this.backgroundImage = loadImage('assets/images/background1.png')
+        this.backgroundImage2 = loadImage('assets/images/backgroundright.png')
 
     //     if(this.currentScreen === 0) {
     //         this.backgroundMusic = loadSound('assets/sounds/classical.mp3');
@@ -20,14 +24,19 @@ class ScreenManager {
  
     displayScreen1() {
         if (this.currentScreen === 0) {
-            let backgroundImage = loadImage('assets/images/background1.png')
+            if(this.backgroundImage) {
+                image(this.backgroundImage,0,0,width,height);
+            }
+
             this.screenBorders1();
         }
    
     }
     displayScreen2() {
         if (this.currentScreen === 1) {
-            background(0,255,0);
+            if(this.backgroundImage) {
+                image(this.backgroundImage2,0,0,width,height);
+            }
             this.screenBorders2();
         }
         for (let dot of this.redDots) {
@@ -70,7 +79,7 @@ class ScreenManager {
     }
     screenBorders2() {
         fill(0);
-        rect(0,0,20,700); // left side
+        rect(0,0,20,650); // left side
         rect(width-20,0,20,height); // right side
         rect(0,0,width,30); // top
         rect(0,height-20,width,20); //bottom
