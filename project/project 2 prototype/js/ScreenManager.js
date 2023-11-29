@@ -28,6 +28,7 @@ class ScreenManager {
     displayScreen2() {
         if (this.currentScreen === 1) {
             background(0,255,0);
+            this.screenBorders2();
         }
         for (let dot of this.redDots) {
             dot.move();
@@ -44,6 +45,7 @@ class ScreenManager {
     displayScreen4() {
         if (this.currentScreen === 2) {
             background(0,0,255);
+            this.screenBorders4();
         }
     }
     displayScreen5() {
@@ -65,6 +67,21 @@ class ScreenManager {
         rect(width-20,0,20,700); // right side
         rect(0,0,width,30); // top
         rect(0,height-20,width,20); //bottom
+    }
+    screenBorders2() {
+        fill(0);
+        rect(0,0,20,700); // left side
+        rect(width-20,0,20,height); // right side
+        rect(0,0,width,30); // top
+        rect(0,height-20,width,20); //bottom
+    }
+    screenBorders4() {
+        fill(0);
+        rect(0,0,20,height); // left side
+        rect(width-20,0,20,height); // right side
+        rect(0,0,width,30); // top
+        rect(0,height - 20,700,30); // bottom
+        rect(800,height - 20,width,30); // bottom
     }
     // screenBorders2() {
 

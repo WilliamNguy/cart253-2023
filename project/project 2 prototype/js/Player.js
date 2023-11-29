@@ -26,14 +26,45 @@ class Player {
             this.x = newX;
             this.y = newY;
         }
-    } else {
+    } 
+    else if (screenManager.currentScreen === -1) {
+        const leftRedRectangle = newX - this.size/2 <= 20;
+        const rightRedRectangle = newX + this.size/2 >= width - 20 && newY + this.size/2 >= 20 && newY - this.size/2 <= 700 - 20;
+        const topRedRectangle = newY - this.size/2 <= 27;
+        const bottomRedRectangle = newY + this.size/2 >= height - 20;
+
+        if (!(leftRedRectangle || rightRedRectangle || topRedRectangle || bottomRedRectangle)) {
+            this.x = newX;
+            this.y = newY;
+        }
+    }
+    else if (screenManager.currentScreen === 1) {
+        const leftGreenRectangle = newX - this.size/2 <= 20 && newY + this.size/2 >= 20 && newY - this.size/2 <= 700 - 20;
+        const rightGreenRectangle = newX + this.size/2 >= width - 20;
+        const topGreenRectangle = newY - this.size/2 <= 27;
+        const bottomGreenRectangle = newY + this.size/2 >= height - 20;
+
+        if (!(leftGreenRectangle || rightGreenRectangle || topGreenRectangle || bottomGreenRectangle)) {
+            this.x = newX;
+            this.y = newY;
+        }
+    }
+    else if (screenManager.currentScreen === 2) {
+        const leftBlueRectangle = newX - this.size/2 <= 20;
+        const rightBlueRectangle = newX + this.size/2 >= width - 20;
+        const topBlueRectangle = newY - this.size/2 <= 27;
+        const bottomBlueRectangle = newY + this.size/2 >= height - 20 && !(newX + this.size / 2 >= 750 && newX - this.size / 2 <= 750);
+
+        if (!(leftBlueRectangle || rightBlueRectangle || topBlueRectangle || bottomBlueRectangle)) {
+            this.x = newX;
+            this.y = newY;
+        }
+    }
+    else {
         this.x = newX;
         this.y = newY;
     }
-    
-        
 
-        
         if (dx !== 0 || dy !== 0) {
             this.isMoving = true;
             if (moveSound && !moveSound.isPlaying()) {
@@ -47,8 +78,6 @@ class Player {
             }
         }
 
-        // this.x += dx;
-        // this.y += dy;
     }
 
     display() {
