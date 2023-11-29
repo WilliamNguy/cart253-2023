@@ -24,6 +24,7 @@ function preload() {
     backgroundMusic1 = loadSound('assets/sounds/drillclassic.mp3');
     moveSound = loadSound('assets/sounds/minecraftfootsteps.mp3');
     transitionSound = loadSound('assets/sounds/minecraftdoor.mp3');
+    screenManager.preload();
 
 }
 

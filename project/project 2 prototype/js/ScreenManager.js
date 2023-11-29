@@ -20,7 +20,7 @@ class ScreenManager {
  
     displayScreen1() {
         if (this.currentScreen === 0) {
-            background(255,255,255);
+            let backgroundImage = loadImage('assets/images/background1.png')
             this.screenBorders1();
         }
    
