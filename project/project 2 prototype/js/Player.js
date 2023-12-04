@@ -62,7 +62,22 @@ class Player {
         const topBlueRectangle = newY - this.size/2 <= 27;
         const bottomBlueRectangle = newY + this.size/2 >= height - 20 && !(newX + this.size / 2 >= 750 && newX - this.size / 2 <= 750);
 
-        if (!(leftBlueRectangle || rightBlueRectangle || topBlueRectangle || bottomBlueRectangle)) {
+        const rectangle1 = newX + this.size/2 >= 1000 && newX - this.size/2 <= 1020 && newY + this.size/2 >= 200 && newY - this.size/2 <= 300;
+        const rectangle2 = newX + this.size/2 >= 650 && newX - this.size/2 <= 670 && newY + this.size/2 >= 100 && newY - this.size/2 <= 200;
+        const rectangle3 = newX + this.size/2 >= 500 && newX - this.size/2 <= 520 && newY + this.size/2 >= 300 && newY - this.size/2 <= 400;
+        const rectangle4 = newX + this.size/2 >= 1200 && newX - this.size/2 <= 1220 && newY + this.size/2 >= 100 && newY - this.size/2 <= height - 100;
+        const rectangle5 = newX + this.size/2 >= 1300 && newX - this.size/2 <= 1320 && newY + this.size/2 >= 100 && newY - this.size/2 <= height - 100;
+        const rectangle6 = newX + this.size/2 >= 1400 && newX - this.size/2 <= 1420 && newY + this.size/2 >= 100 && newY - this.size/2 <= height - 100;
+        const rectangle7 = newX + this.size / 2 >= 200 && newX - this.size / 2 <= 220 && newY + this.size / 2 >= 0 && newY - this.size / 2 <= 420;            const rectangle8 = newX + this.size / 2 >= 400 && newX - this.size / 2 <= 420 && newY + this.size / 2 >= 500 && newY - this.size / 2 <= height;
+        const rectangle9 = newX + this.size / 2 >= 1100 && newX - this.size / 2 <= 1120 && newY + this.size / 2 >= 400 && newY - this.size / 2 <= height;
+        const rectangle10 = newX + this.size / 2 >= 1000 && newX - this.size / 2 <= 1020 && newY + this.size / 2 >= 500 && newY - this.size / 2 <= 700;
+        const rectangle11 = newX + this.size / 2 >= 700 && newX - this.size / 2 <= 720 && newY + this.size / 2 >= 700 && newY - this.size / 2 <= height;
+        const rectangle12 = newX + this.size / 2 >= 800 && newX - this.size / 2 <= 820 && newY + this.size / 2 >= 700 && newY - this.size / 2 <= height;
+        if (!(leftBlueRectangle || rightBlueRectangle || topBlueRectangle || bottomBlueRectangle) && !(
+            rectangle1 || 
+            rectangle2 
+            || rectangle3 || rectangle4 || rectangle5 || rectangle6 || rectangle7 || rectangle8 || rectangle9 || rectangle10 || rectangle11 || rectangle12
+            )) {
             this.x = newX;
             this.y = newY;
         }

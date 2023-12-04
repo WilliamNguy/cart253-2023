@@ -64,7 +64,38 @@ class ScreenManager {
     displayScreen4() {
         if (this.currentScreen === 2) {
             background(0,0,255);
-            this.screenBorders4();
+
+        fill(0);
+        noStroke();
+
+        // Vertical walls
+    rect(1000,200,20,100);
+    rect(650,100,20,100);
+    rect(500,300,20,100);
+    rect(1300,100,20, height - 200);
+    rect(1200,100,20, height - 200);
+    rect(1400,100,20, height - 200);
+    rect(200,0, 20, 420);
+    rect(400,500,20,height);
+    rect(1100,400,20,height);
+    rect(1000,500,20,200);
+    rect(700, 700, 20, height);
+    rect(800, 700, 20, height);
+
+    // Horizontal walls
+    rect(1400,300,100,20);
+    rect(500,600,400,20);
+    rect(400,500,600,20);
+    rect(300,300,600,20);
+    rect(300,200,700,20);
+    rect(300,400,800,20);
+    rect(300,400,800,20);
+    rect(300, 100,1000, 20);
+    // rect(0, 450, width - 100, 20);
+    // rect(100, 550, width - 200, 20);
+    // rect(0, 650, width - 300, 20);
+
+        this.screenBorders4();
         }
     }
     displayScreen5() {
