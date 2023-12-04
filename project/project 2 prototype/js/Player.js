@@ -18,7 +18,7 @@ class Player {
         // Check for collisions with starting screen borders
         const leftRectangle = newX - this.size / 2 <= 20 && newY + this.size / 2 >= 20 && newY - this.size / 2 <= 700 - 20;
         const rightRectangle = newX + this.size / 2 >= width - 20 && newY + this.size / 2 >= 20 && newY - this.size / 2 <= 700 - 20;
-        const topRectangle = newY - this.size / 2 <= 27 && !(newX + this.size / 2 >= 750 && newX - this.size / 2 <= 750);
+        const topRectangle = newY - this.size / 2 <= 27 && !(newX + this.size / 2 >= 770 && newX - this.size / 2 <= 750);
         const bottomRectangle = newY + this.size / 2 >= height - 20 && newX + this.size / 2 >= 20 && newX - this.size / 2 <= width;
     
         // If there are no collisions with the black rectangles, update the player's position
@@ -68,18 +68,40 @@ class Player {
         const rectangle4 = newX + this.size/2 >= 1200 && newX - this.size/2 <= 1220 && newY + this.size/2 >= 100 && newY - this.size/2 <= height - 100;
         const rectangle5 = newX + this.size/2 >= 1300 && newX - this.size/2 <= 1320 && newY + this.size/2 >= 100 && newY - this.size/2 <= height - 100;
         const rectangle6 = newX + this.size/2 >= 1400 && newX - this.size/2 <= 1420 && newY + this.size/2 >= 100 && newY - this.size/2 <= height - 100;
-        const rectangle7 = newX + this.size / 2 >= 200 && newX - this.size / 2 <= 220 && newY + this.size / 2 >= 0 && newY - this.size / 2 <= 420;            const rectangle8 = newX + this.size / 2 >= 400 && newX - this.size / 2 <= 420 && newY + this.size / 2 >= 500 && newY - this.size / 2 <= height;
+        const rectangle7 = newX + this.size / 2 >= 200 && newX - this.size / 2 <= 220 && newY + this.size / 2 >= 0 && newY - this.size / 2 <= 420;            
+        const rectangle8 = newX + this.size / 2 >= 400 && newX - this.size / 2 <= 420 && newY + this.size / 2 >= 500 && newY - this.size / 2 <= height;
         const rectangle9 = newX + this.size / 2 >= 1100 && newX - this.size / 2 <= 1120 && newY + this.size / 2 >= 400 && newY - this.size / 2 <= height;
         const rectangle10 = newX + this.size / 2 >= 1000 && newX - this.size / 2 <= 1020 && newY + this.size / 2 >= 500 && newY - this.size / 2 <= 700;
         const rectangle11 = newX + this.size / 2 >= 700 && newX - this.size / 2 <= 720 && newY + this.size / 2 >= 700 && newY - this.size / 2 <= height;
         const rectangle12 = newX + this.size / 2 >= 800 && newX - this.size / 2 <= 820 && newY + this.size / 2 >= 700 && newY - this.size / 2 <= height;
+
+        const rectangle13 = newX + this.size/2 >= 1400 && newX - this.size/2 <= 1500 && newY + this.size/2 >= 300 && newY - this.size/2 <= 320;
+        const rectangle14 = newX + this.size/2 >= 300 && newX - this.size/2 <= 1300 && newY + this.size/2 >= 100 && newY - this.size/2 <= 120;
+        const rectangle15 = newX + this.size/2 >= 300 && newX - this.size/2 <= 1000 && newY + this.size/2 >= 200 && newY - this.size/2 <= 220;
+        const rectangle16 = newX + this.size/2 >= 300 && newX - this.size/2 <= 900 && newY + this.size/2 >= 300 && newY - this.size/2 <= 320;
+        const rectangle17 = newX + this.size/2 >= 300 && newX - this.size/2 <=1100 && newY + this.size/2 >= 400 && newY - this.size/2 <= 420;
+        const rectangle18 = newX + this.size/2 >= 400 && newX - this.size/2 <= 1000 && newY + this.size/2 >= 500 && newY - this.size/2 <= 520;
+        const rectangle19 = newX + this.size/2 >= 500 && newX - this.size/2 <= 900 && newY + this.size/2 >= 600 && newY - this.size/2 <= 620;
+
         if (!(leftBlueRectangle || rightBlueRectangle || topBlueRectangle || bottomBlueRectangle) && !(
             rectangle1 || 
             rectangle2 
             || rectangle3 || rectangle4 || rectangle5 || rectangle6 || rectangle7 || rectangle8 || rectangle9 || rectangle10 || rectangle11 || rectangle12
+            || rectangle13
+            || rectangle14
+            || rectangle15
+            || rectangle16
+            || rectangle17
+            || rectangle18
+            || rectangle19
+
             )) {
             this.x = newX;
             this.y = newY;
+        }
+        else {
+            this.x = 750;
+            this.y = height - 60;
         }
     }
     else {
