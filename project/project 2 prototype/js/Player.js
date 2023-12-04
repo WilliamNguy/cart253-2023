@@ -3,7 +3,7 @@ class Player {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.speed = 0.5;
+        this.speed = 1;
         this.previousScreen = 0;
         this.isMoving = false;
 
@@ -33,7 +33,14 @@ class Player {
         const topRedRectangle = newY - this.size/2 <= 27;
         const bottomRedRectangle = newY + this.size/2 >= height - 20;
 
-        if (!(leftRedRectangle || rightRedRectangle || topRedRectangle || bottomRedRectangle)) {
+        const rectangle1 = newX - this.size / 2 <= 1680 && newX + this.size / 2 >= 1080 && newY + this.size / 2 >= 630 && newY - this.size / 2 <= 700;
+        const rectangle2 = newX - this.size / 2 <= 1150 && newX + this.size / 2 >= 1080 && newY + this.size / 2 >= 320 && newY - this.size / 2 <= 630;
+        const rectangle3 = newY - this.size / 2 <= 390 && newX + this.size / 2 >= 250 && newX - this.size / 2 <= 1080 && newY + this.size / 2 >= 320;
+        const rectangle4 = newX - this.size / 2 <= 920 && newX + this.size / 2 >= 850 && newY + this.size / 2 >= 540 && newY - this.size / 2 <= 940;
+        const rectangle5 = newX - this.size / 2 <= 850 + 70 && newX + this.size / 2 >= 250 && newY + this.size / 2 >= 540 && newY - this.size / 2 <= 610;
+        if (!(leftRedRectangle || rightRedRectangle || topRedRectangle || bottomRedRectangle) 
+        && !(rectangle1 || rectangle2 || rectangle3 || rectangle4 || rectangle5)
+    ) {
             this.x = newX;
             this.y = newY;
         }
