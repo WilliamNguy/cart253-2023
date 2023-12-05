@@ -3,6 +3,7 @@ class Cube {
         this.size = 20;
         this.isVisible = true;
         this.randomPosition();
+        this.image = loadImage('assets/images/gem.png');
     }
 
     randomPosition() {
@@ -13,8 +14,7 @@ class Cube {
 
     display() {
         if(this.isVisible) {
-            fill(0, 255, 255);
-            rect(this.x, this.y, this.size, this.size);
+            image(this.image, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
         }
     }
 

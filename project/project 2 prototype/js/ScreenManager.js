@@ -10,6 +10,11 @@ class ScreenManager {
         for (let i = 0; i < 5; i++) {
             this.redDots.push(new RedDots(i))
         }
+        this.pickUpSquare = {
+            x: 1430,
+            y: 330,
+        }
+        this.squareCollected = false;
     }
 
     preload() {
@@ -31,6 +36,11 @@ class ScreenManager {
             }
 
             this.screenBorders1();
+
+            if (this.squareCollectionInScreen4) {
+                fill(0,0,255);
+                rect(width/2-25,height/2-25,50,50);
+            }
         }
    
     }
@@ -63,12 +73,37 @@ class ScreenManager {
     }
     displayScreen4() {
         if (this.currentScreen === 2) {
-            // background(255,255,0);
+            background(255,255,0);
 
         fill(0);
         noStroke();
 
+        if (!this.squareCollected) {
+            // Check if the player is touching the square
+            const distanceToSquare = dist(
+                movePlayer.x,
+                movePlayer.y,
+                this.pickUpSquare.x,
+                this.pickUpSquare.y
+            );
+            if (distanceToSquare > movePlayer.size / 2 + 25) {
+                // Draw the square only if the player hasn't touched it
+                fill(0, 0, 255);
+                rect(
+                    this.pickUpSquare.x - 25,
+                    this.pickUpSquare.y - 25,
+                    50,
+                    50
+                );
+            } else {
+                // Player has touched the square, set squareCollected to true
+                this.squareCollected = true;
+                this.squareCollectedInScreen4 = true;
+            }
+        }
+
         // Vertical walls
+    fill(0);
     rect(1000,200,20,100);
     rect(650,100,20,100);
     rect(500,300,20,100);
@@ -172,6 +207,8 @@ class ScreenManager {
             this.transitionSound.play();
             player.previousScreen = this.currentScreen;
 
+            this.squareCollectedInScreen4 = false;
+
             if(backgroundMusic && backgroundMusic.isPlaying()) {
                 backgroundMusic.stop();
             }
@@ -212,5 +249,28 @@ class ScreenManager {
         }
         
  
+    }
+
+    checkSquareCollection(playerX, playerY, playerSize) {
+        if (!this.squareCollected) {
+            // Check if the player is touching the square
+            const distanceToSquare = dist(
+                playerX,
+                playerY,
+                this.pickUpSquare.x,
+                this.pickUpSquare.y
+            );
+            if (distanceToSquare < playerSize / 2 + 25) {
+                // Player has touched the square, set squareCollected to true
+                this.squareCollected = true;
+                this.pickUpSquare = {
+                    x: width/2,
+                    y: height/2,
+                };
+            if (this.currentScreen === 2) {
+                    this.squareCollectedInScreen4 = true;
+                }
+            }
+        }
     }
 }

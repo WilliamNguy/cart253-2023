@@ -15,6 +15,7 @@ let amountCubes = 5
 let collectedCubes = 0;
 let mic;
 let threshold = 0.1;
+let playerImage;
 // let screens = [];
 
 
@@ -26,6 +27,7 @@ function preload() {
     backgroundMusic1 = loadSound('assets/sounds/drillclassic.mp3');
     moveSound = loadSound('assets/sounds/minecraftfootsteps.mp3');
     transitionSound = loadSound('assets/sounds/minecraftdoor.mp3');
+    playerImage = loadImage('assets/images/hat.png');
     screenManager.preload();
     // mic = new p5.AudioIn();
     // mic.start();
@@ -163,7 +165,6 @@ function draw() {
     textSize(20);
     textAlign(LEFT, TOP);
     text('Collected Cubes: ' + collectedCubes, 10, 10);
-    
     
 }
 

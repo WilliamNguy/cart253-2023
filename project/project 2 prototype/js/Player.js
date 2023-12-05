@@ -119,8 +119,7 @@ class Player {
     }
 
     display() {
-        fill(255)
-        ellipse(this.x,this.y,this.size);
+        image(playerImage, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
     }
 
     moveKeyPress(screenManager) {
