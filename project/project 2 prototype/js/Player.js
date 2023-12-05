@@ -6,6 +6,7 @@ class Player {
         this.speed = 1;
         this.previousScreen = 0;
         this.isMoving = false;
+        this.teleportationOn = true;
 
     }
 
@@ -82,26 +83,32 @@ class Player {
         const rectangle17 = newX + this.size/2 >= 300 && newX - this.size/2 <=1100 && newY + this.size/2 >= 400 && newY - this.size/2 <= 420;
         const rectangle18 = newX + this.size/2 >= 400 && newX - this.size/2 <= 1000 && newY + this.size/2 >= 500 && newY - this.size/2 <= 520;
         const rectangle19 = newX + this.size/2 >= 500 && newX - this.size/2 <= 900 && newY + this.size/2 >= 600 && newY - this.size/2 <= 620;
+        
+        const switchSquare = {
+            x: 1450,
+            y: 350,
+            size: 20
+        };
 
-        if (!(leftBlueRectangle || rightBlueRectangle || topBlueRectangle || bottomBlueRectangle) && !(
-            rectangle1 || 
-            rectangle2 
-            || rectangle3 || rectangle4 || rectangle5 || rectangle6 || rectangle7 || rectangle8 || rectangle9 || rectangle10 || rectangle11 || rectangle12
-            || rectangle13
-            || rectangle14
-            || rectangle15
-            || rectangle16
-            || rectangle17
-            || rectangle18
-            || rectangle19
+        const touchingSwitch = (
+            newX + this.size/2 >= switchSquare.x - switchSquare.size/2 && newX - this.size/2 <= switchSquare.x + switchSquare.size/2 && newY + this.size/2 >= switchSquare.y - switchSquare.size/2 && newY - this.size/2 <= switchSquare.y + switchSquare.size/2);
 
-            )) {
-            this.x = newX;
-            this.y = newY;
+        if (touchingSwitch) {
+            this.toggleTeleportation();
+        }
+        if(this.teleportationOn) {
+            if (!(leftBlueRectangle || rightBlueRectangle || topBlueRectangle || bottomBlueRectangle) && !(
+                rectangle1 || rectangle2 || rectangle3 || rectangle4 || rectangle5 || rectangle6 || rectangle7 || rectangle8 || rectangle9 || rectangle10 || rectangle11 || rectangle12|| rectangle13|| rectangle14|| rectangle15|| rectangle16|| rectangle17|| rectangle18|| rectangle19)) {
+                if (this.teleportationOn && !touchingSwitch) {
+                    this.x = newX;
+                    this.y = newY;
+                }
+            }
         }
         else {
-            this.x = 750;
+            this.x = 760;
             this.y = height - 60;
+            
         }
     }
     else {
@@ -155,5 +162,9 @@ class Player {
             }
         }
     }
+    toggleTeleportation() {
+        this.teleportationOn = !this.teleportationOn;
+    }
 }
+
 
