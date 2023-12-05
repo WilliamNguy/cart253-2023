@@ -11,11 +11,12 @@ let transitionSound;
 let startGame = false;
 let randomCube
 let cubes = [];
-let amountCubes = 5
+let amountCubes = 7
 let collectedCubes = 0;
 let mic;
 let threshold = 0.1;
 let playerImage;
+let gameState = 'playing'; 
 // let screens = [];
 
 
@@ -65,6 +66,9 @@ function setup() {
     for (let i = 0; i < amountCubes; i++) {
         cubes.push(new Cube());
     }
+    for (let i = 0; i < amountCubes; i++) {
+        cubes.push(new Cube());
+    }
     mic = new p5.AudioIn();
     mic.start();
 }
@@ -87,6 +91,7 @@ function draw() {
     screenManager.checkTransition(movePlayer);
 
     
+if (gameState === 'playing') {
 
     if (screenManager.currentScreen === 0) {
         // background(255,0,0);
@@ -147,14 +152,33 @@ function draw() {
         movePlayer.display();
         movePlayer.moveKeyPress(screenManager);
         movePlayer.keyReleased();
+        for (let i = 3 * amountCubes; i < 4 * amountCubes; i++) {
+            cubes[i].display();
+            if (cubes[i].isPlayerTouch(movePlayer.x, movePlayer.y, movePlayer.size)) {
+                cubes[i].collect();
+            }
+        }
+    
     }
-    else {
-        // background(0,255,0);
-        screenManager.displayScreen5();
-        movePlayer.display();
-        movePlayer.moveKeyPress(screenManager);
-        movePlayer.keyReleased();
+    if (collectedCubes >= 20) {
+        gameState = 'win';
     }
+} else if (gameState === 'win') {
+    background(0);
+    fill(255);
+    textSize(48);
+    textAlign(CENTER,CENTER);
+    text('You Win!', width/2,height/2);
+}
+    
+    // else {
+    //     // background(0,255,0);
+    //     screenManager.displayScreen5();
+    //     movePlayer.display();
+    //     movePlayer.moveKeyPress(screenManager);
+    //     movePlayer.keyReleased();
+    // }
+    
 
     // if (!screenManager.isPlayerInCurrentScreen(movePlayer.x,movePlayer.y)) {
     //     screenManager.switchToNextScreen();
@@ -165,6 +189,7 @@ function draw() {
     textSize(20);
     textAlign(LEFT, TOP);
     text('Collected Cubes: ' + collectedCubes, 10, 10);
+    
     
 }
 
