@@ -6,7 +6,8 @@ class Player {
         this.speed = 1;
         this.previousScreen = 0;
         this.isMoving = false;
-
+        this.teleportationOn = true;
+        this.darkRadius = 50;
     }
 
     move(dx,dy,screenManager) {
@@ -24,7 +25,7 @@ class Player {
         // If there are no collisions with the black rectangles, update the player's position
         if (!(leftRectangle || rightRectangle || topRectangle || bottomRectangle)) {
             this.x = newX;
-            this.y = newY;
+            this.y = newY; 
         }
     } 
     else if (screenManager.currentScreen === -1) {
@@ -57,6 +58,7 @@ class Player {
         }
     }
     else if (screenManager.currentScreen === 2) {
+
         const leftBlueRectangle = newX - this.size/2 <= 20;
         const rightBlueRectangle = newX + this.size/2 >= width - 20;
         const topBlueRectangle = newY - this.size/2 <= 27;
@@ -82,9 +84,11 @@ class Player {
         const rectangle17 = newX + this.size/2 >= 300 && newX - this.size/2 <=1100 && newY + this.size/2 >= 400 && newY - this.size/2 <= 420;
         const rectangle18 = newX + this.size/2 >= 400 && newX - this.size/2 <= 1000 && newY + this.size/2 >= 500 && newY - this.size/2 <= 520;
         const rectangle19 = newX + this.size/2 >= 500 && newX - this.size/2 <= 900 && newY + this.size/2 >= 600 && newY - this.size/2 <= 620;
-
+        
         if (!(leftBlueRectangle || rightBlueRectangle || topBlueRectangle || bottomBlueRectangle) && !(
-            rectangle1 || rectangle2 || rectangle3 || rectangle4 || rectangle5 || rectangle6 || rectangle7 || rectangle8 || rectangle9 || rectangle10 || rectangle11 || rectangle12|| rectangle13|| rectangle14|| rectangle15|| rectangle16|| rectangle17|| rectangle18|| rectangle19
+            rectangle1 || rectangle2 || rectangle3 || rectangle4 || rectangle5 || rectangle6 || rectangle7 || rectangle8 || rectangle9 || rectangle10 || rectangle11 || rectangle12|| rectangle13|| rectangle14|| rectangle15|| rectangle16|| rectangle17|| rectangle18
+            || rectangle19
+
             )) {
             this.x = newX;
             this.y = newY;
@@ -145,5 +149,19 @@ class Player {
             }
         }
     }
-}
+//     display(screenManager) {
+//         if (screenManager.currentScreen === 2) {
+//             fill(50); 
+//             arc(this.x, this.y, this.size * 2, this.size * 2, PI + QUARTER_PI, TWO_PI + QUARTER_PI, PIE);
+//         }
+//         fill(255);
+//         ellipse(this.x,this.y,this.size);
+//         const distanceToMouse = dist(this.x,this.y,this.mouseX,this.mouseY);
+
+//         if(distanceToMouse < this.darkRadius && screenManager.currentScreen === 2) {
+//             fill(0,50);
+//             ellipse(mouseX,mouseY, this.darkRadius*2);
+//         }
+//     }
+} 
 

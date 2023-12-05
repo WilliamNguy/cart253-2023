@@ -13,6 +13,8 @@ let randomCube
 let cubes = [];
 let amountCubes = 5
 let collectedCubes = 0;
+let mic;
+let threshold = 0.1;
 // let screens = [];
 
 
@@ -25,7 +27,8 @@ function preload() {
     moveSound = loadSound('assets/sounds/minecraftfootsteps.mp3');
     transitionSound = loadSound('assets/sounds/minecraftdoor.mp3');
     screenManager.preload();
-
+    // mic = new p5.AudioIn();
+    // mic.start();
 }
 
 
@@ -60,7 +63,8 @@ function setup() {
     for (let i = 0; i < amountCubes; i++) {
         cubes.push(new Cube());
     }
-
+    mic = new p5.AudioIn();
+    mic.start();
 }
 
 
@@ -129,6 +133,14 @@ function draw() {
     }
     else if (screenManager.currentScreen === 2) {
         // background(0,255,0);
+        let micLevel = mic.getLevel();
+        if (micLevel > threshold) {
+            // Change background color to white
+            background(255);
+        } else {
+            // Original background for screen 2
+            background(255, 255, 0);
+        }
         screenManager.displayScreen4();
         movePlayer.display();
         movePlayer.moveKeyPress(screenManager);
@@ -154,4 +166,5 @@ function draw() {
     
     
 }
+
 

@@ -63,7 +63,7 @@ class ScreenManager {
     }
     displayScreen4() {
         if (this.currentScreen === 2) {
-            background(0,0,255);
+            // background(255,255,0);
 
         fill(0);
         noStroke();
