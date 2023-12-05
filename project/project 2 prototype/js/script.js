@@ -136,10 +136,10 @@ function draw() {
         let micLevel = mic.getLevel();
         if (micLevel > threshold) {
             // Change background color to white
-            background(255);
+            background(20);
         } else {
             // Original background for screen 2
-            background(255, 255, 0);
+            background(0);
         }
         screenManager.displayScreen4();
         movePlayer.display();
