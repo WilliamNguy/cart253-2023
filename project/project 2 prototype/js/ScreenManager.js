@@ -23,6 +23,7 @@ class ScreenManager {
         this.backgroundImage2 = loadImage('assets/images/backgroundright.png')
         this.backgroundImage3 = loadImage('assets/images/background2.png')
 
+
     //     if(this.currentScreen === 0) {
     //         this.backgroundMusic = loadSound('assets/sounds/classical.mp3');
     //     }
@@ -215,6 +216,12 @@ class ScreenManager {
             if(backgroundMusic && backgroundMusic1.isPlaying()) {
                 backgroundMusic1.stop();
             }
+            if(backgroundMusic1 && backgroundMusic2.isPlaying()) {
+                backgroundMusic2.stop();
+            }
+            if(backgroundMusic2 && backgroundMusic3.isPlaying()) {
+                backgroundMusic3.stop();
+            }
             if(this.transitionSound) {
                 this.transitionSound.play();
             }
@@ -226,6 +233,16 @@ class ScreenManager {
             else if (this.currentScreen === 1) {
                 if (backgroundMusic1) {
                     backgroundMusic1.loop();
+                }
+            }
+            else if (this.currentScreen === -1) {
+                if (backgroundMusic2) {
+                    backgroundMusic2.loop();
+                }
+            }
+            else if (this.currentScreen === 2) {
+                if (backgroundMusic3) {
+                    backgroundMusic3.loop();
                 }
             }
 

@@ -6,6 +6,8 @@ let movePlayer;
 let screenManager;
 let backgroundMusic;
 let backgroundMusic1;
+let backgroundMusic2;
+let backgroundMusic3;
 let moveSound;
 let transitionSound;
 let startGame = false;
@@ -17,6 +19,7 @@ let mic;
 let threshold = 0.1;
 let playerImage;
 let gameState = 'playing'; 
+let collectSound;
 // let screens = [];
 
 
@@ -26,9 +29,12 @@ let gameState = 'playing';
 function preload() {
     backgroundMusic = loadSound('assets/sounds/classical.mp3');
     backgroundMusic1 = loadSound('assets/sounds/drillclassic.mp3');
+    backgroundMusic2 = loadSound('assets/sounds/forest.wav');
+    backgroundMusic3 = loadSound('assets/sounds/dark.wav');
     moveSound = loadSound('assets/sounds/minecraftfootsteps.mp3');
     transitionSound = loadSound('assets/sounds/minecraftdoor.mp3');
     playerImage = loadImage('assets/images/hat.png');
+    collectSound = loadSound('assets/sounds/gem.wav'); 
     screenManager.preload();
     // mic = new p5.AudioIn();
     // mic.start();
@@ -54,9 +60,16 @@ function setup() {
     if (backgroundMusic) {
         backgroundMusic.loop();
     }
-    else if (backgroundMusic1) {
+    else if(backgroundMusic1) {
         backgroundMusic1.loop();
     }
+    else if(backgroundMusic2) {
+        backgroundMusic2.loop();
+    }
+    else if(backgroundMusic3) {
+        backgroundMusic3.loop();
+    }
+
     for (let i = 0; i < amountCubes; i++) {
         cubes.push(new Cube());
     }
@@ -104,6 +117,7 @@ if (gameState === 'playing') {
             cubes[i].display();
             if (cubes[i].isPlayerTouch(movePlayer.x,movePlayer.y,movePlayer.size)) {
                 cubes[i].collect();
+                collectSound.play();
             }
         }
     }
@@ -122,6 +136,7 @@ if (gameState === 'playing') {
             cubes[i].display();
             if (cubes[i].isPlayerTouch(movePlayer.x,movePlayer.y,movePlayer.size)) {
                 cubes[i].collect();
+                collectSound.play();
             }
         }
     }
@@ -135,6 +150,7 @@ if (gameState === 'playing') {
             cubes[i].display();
             if (cubes[i].isPlayerTouch(movePlayer.x,movePlayer.y,movePlayer.size)) {
                 cubes[i].collect();
+                collectSound.play();
             }
         }
     }
@@ -156,6 +172,7 @@ if (gameState === 'playing') {
             cubes[i].display();
             if (cubes[i].isPlayerTouch(movePlayer.x, movePlayer.y, movePlayer.size)) {
                 cubes[i].collect();
+                collectSound.play();
             }
         }
     
