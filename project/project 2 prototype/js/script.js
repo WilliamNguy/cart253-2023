@@ -29,7 +29,7 @@ let startingScreenTexts = [ "click me"
 , "Wait do I even have a gift for him??"
 , "Ohh *****"
 , "I need 20 gems to buy him a gift!"
-, "I have like 5 minutes!!"];
+, "I best hurry ccause I have like 5 MINUTES!!"];
 // let startingScreenText8 = 
 // let screens = [];
 let currentStartingScreenTextIndex = 0;
@@ -242,7 +242,7 @@ if (gameState === 'playing') {
     fill(255);
     textSize(20);
     textAlign(LEFT, TOP);
-    text('Collected Cubes: ' + collectedCubes, 10, 10);
+    text('GEMS OUT 20: ' + collectedCubes, 10, 10);
     
     
 }

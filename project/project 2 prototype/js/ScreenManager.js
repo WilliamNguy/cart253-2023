@@ -74,7 +74,7 @@ class ScreenManager {
     }
     displayScreen4() {
         if (this.currentScreen === 2) {
-            background(255,255,0);
+        
 
         fill(0);
         noStroke();
@@ -89,7 +89,7 @@ class ScreenManager {
             );
             if (distanceToSquare > movePlayer.size / 2 + 25) {
                 // Draw the square only if the player hasn't touched it
-                fill(0, 0, 255);
+                fill(0, 0, 0);
                 rect(
                     this.pickUpSquare.x - 25,
                     this.pickUpSquare.y - 25,
