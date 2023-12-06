@@ -3,7 +3,7 @@ class Player {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.speed = 1;
+        this.speed = 0.6;
         this.previousScreen = 0;
         this.isMoving = false;
         this.teleportationOn = true;
