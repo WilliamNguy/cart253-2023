@@ -3,10 +3,10 @@ class RedDots {
         this.size = 10;
         // this.x = width - 30;
         this.y = random(27, height - 27);
-        this.speed = 2;
+        this.speed = 5;
         this.down = 1;
 
-        this.x = random(width/2,width - 30)
+        this.x = random(width - 1400,width - 30)
     }
 
     move() {

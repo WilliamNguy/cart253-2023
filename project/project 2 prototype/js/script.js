@@ -20,7 +20,22 @@ let threshold = 0.1;
 let playerImage;
 let gameState = 'playing'; 
 let collectSound;
+let startingScreenTexts = [ "click me"
+, "DOUBLE CLICK FOR DIALOGUE" 
+, "Hello...? Is anyone there?"
+, "They must've left for dad's birthday!"
+, "How did they forget me?"
+, "I overslept didn't I"
+, "Wait do I even have a gift for him??"
+, "Ohh *****"
+, "I need 20 gems to buy him a gift!"
+, "I have like 5 minutes!!"];
+// let startingScreenText8 = 
 // let screens = [];
+let currentStartingScreenTextIndex = 0;
+let displaySecondText = false;
+let gameTime;
+let timeDuration = 5 * 60 * 1000;
 
 
 /**
@@ -84,6 +99,7 @@ function setup() {
     }
     mic = new p5.AudioIn();
     mic.start();
+    gameTime = millis();
 }
 
 
@@ -96,6 +112,7 @@ function draw() {
         if(mouseIsPressed) {
             startGame = true;
             background (255);
+            displaySecondText = true;
         }
     }
     else {
@@ -105,6 +122,11 @@ function draw() {
 
     
 if (gameState === 'playing') {
+    let elapsedTime = millis() - gameTime;
+
+    if (elapsedTime >= timeDuration) {
+        gameState = 'lose';
+    }
 
     if (screenManager.currentScreen === 0) {
         // background(255,0,0);
@@ -120,6 +142,15 @@ if (gameState === 'playing') {
                 collectSound.play();
             }
         }
+        fill(255);
+            textSize(20);
+            textAlign(RIGHT, TOP);
+        
+        if (displaySecondText) {
+        text(startingScreenTexts[currentStartingScreenTextIndex], width - 200, 200);
+      } else {
+        text(startingScreenTexts[currentStartingScreenTextIndex], width - 200, 200);
+      }
     }
     else if (screenManager.currentScreen === 1) {
         // background(0,255,0);
@@ -186,6 +217,12 @@ if (gameState === 'playing') {
     textSize(48);
     textAlign(CENTER,CENTER);
     text('You Win!', width/2,height/2);
+} else if (gameState === 'lose') {
+    background (0);
+    fill(255);
+    textSize(48);
+    textAlign(CENTER,CENTER);
+    text('Ran Out Of Time! You Ruined it!', width/2, height/2);
 }
     
     // else {
@@ -210,4 +247,14 @@ if (gameState === 'playing') {
     
 }
 
-
+function mouseClicked() {
+    if (displaySecondText) {
+      // If the second text is displayed, move to the next starting screen text
+      currentStartingScreenTextIndex++;
+      if (currentStartingScreenTextIndex >= startingScreenTexts.length) {
+        // If we reached the end of the texts, reset the index
+        currentStartingScreenTextIndex = 0;
+      }
+    }
+    displaySecondText = !displaySecondText;
+}

@@ -7,7 +7,7 @@ class ScreenManager {
         this.backgroundImage3 = null;
         this.transitionSound = null;
         this.redDots = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 25; i++) {
             this.redDots.push(new RedDots(i))
         }
         this.pickUpSquare = {
@@ -132,6 +132,19 @@ class ScreenManager {
     // rect(0, 650, width - 300, 20);
 
         this.screenBorders4();
+
+        
+
+        fill(255);
+            textSize(16);
+            textAlign(LEFT, BOTTOM);
+            text(
+                "I can't see anything, something tells me I should make a loud noise... maybe scream...?",
+                10,
+                height - 5
+            );
+
+        
         }
     }
     displayScreen5() {
